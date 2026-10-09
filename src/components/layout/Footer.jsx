@@ -4,7 +4,7 @@ import {
   FiMail, FiPhone, FiMapPin, FiShield, FiArrowRight, FiCheckCircle, 
   FiChevronRight, FiTruck, FiClock, FiCalendar
 } from 'react-icons/fi';
-import logoImg from '../../assets/Jaylogo1.png';
+import logoImg from '../../assets/Jaylogo2.png';
 import footerBgImg from '../../assets/footerbg.jpg';
 import { useTenant } from '../../contexts/TenantContext';
 
@@ -47,15 +47,15 @@ export default function Footer() {
         position: 'relative',
         marginTop: 'auto',
         color: '#FFFFFF',
-        borderTop: '1.5px solid rgba(255, 153, 0, 0.40)',
+        borderTop: '1.5px solid rgba(255, 69, 0, 0.40)',
       }}
     >
-      {/* Top Glowing Golden Amber Accent Bar */}
+      {/* Top Glowing Saffron Accent Bar */}
       <div style={{
         height: 3,
-        background: 'linear-gradient(90deg, #FF9900 0%, #FFA800 50%, #FFB800 100%)',
+        background: 'linear-gradient(90deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%)',
         width: '100%',
-        boxShadow: '0 0 20px rgba(255, 153, 0, 0.75)',
+        boxShadow: '0 0 20px rgba(230, 46, 0, 0.75)',
       }} />
 
       <div style={{ padding: '56px 0 28px' }}>
@@ -67,24 +67,28 @@ export default function Footer() {
               <Link to="/" style={{ display: 'inline-block', marginBottom: 16, textDecoration: 'none' }}>
                 <img
                   src={logoImg}
-                  alt={settings?.businessName || "Jay Kedar Car Rental"}
+                  alt={settings?.businessName || "Jay Kedarnath Tours & Travels"}
                   style={{
-                    height: 82,
-                    maxHeight: 82,
-                    width: 'auto',
+                    height: 94,
+                    width: 94,
+                    maxHeight: 94,
                     objectFit: 'contain',
                     display: 'block',
-                    filter: 'drop-shadow(0 4px 14px rgba(255, 153, 0, 0.50))',
+                    imageRendering: '-webkit-optimize-contrast',
+                    filter: 'drop-shadow(0 4px 20px rgba(230, 46, 0, 0.50))',
+                    transition: 'transform 0.25s ease',
                   }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.06)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
                 />
               </Link>
 
               <h3 style={{ fontSize: 17, fontWeight: 900, color: '#FFFFFF', marginBottom: 10, letterSpacing: '0.4px', textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
-                {settings?.businessName || "Jay Kedar Car Rental"}
+                {settings?.businessName || "Jay Kedarnath Tours & Travels"}
               </h3>
 
               <p style={{ fontSize: 13.5, color: '#E2E8F0', lineHeight: 1.65, marginBottom: 20, maxWidth: 320, fontWeight: 600, textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
-                {settings?.tagline || 'Premium self-drive car rentals with unlimited daily kilometers, 24/7 doorstep delivery & zero deposit hassle in Pune.'}
+                {settings?.tagline || 'Premium cab and vehicle rentals for outstation trips, local journeys, and spiritual pilgrimages across Pune and Maharashtra.'}
               </p>
 
               {/* Social Media Buttons */}
@@ -112,7 +116,7 @@ export default function Footer() {
                       textDecoration: 'none',
                     }}
                     onMouseEnter={e => {
-                      e.currentTarget.style.background = s.hoverBg || '#FF9900';
+                      e.currentTarget.style.background = s.hoverBg || '#FF4500';
                       e.currentTarget.style.color = '#FFFFFF';
                       e.currentTarget.style.borderColor = 'transparent';
                       e.currentTarget.style.transform = 'translateY(-2px)';
@@ -137,7 +141,7 @@ export default function Footer() {
                   <h4 style={{
                     fontSize: 13,
                     fontWeight: 900,
-                    color: '#FF9900',
+                    color: '#FF4500',
                     letterSpacing: '1.4px',
                     textTransform: 'uppercase',
                     marginBottom: 18,
@@ -161,7 +165,7 @@ export default function Footer() {
                             textShadow: '0 2px 6px rgba(0,0,0,0.5)',
                           }}
                           onMouseEnter={e => {
-                            e.currentTarget.style.color = '#FF9900';
+                            e.currentTarget.style.color = '#FF4500';
                             e.currentTarget.style.transform = 'translateX(4px)';
                           }}
                           onMouseLeave={e => {
@@ -169,7 +173,7 @@ export default function Footer() {
                             e.currentTarget.style.transform = 'translateX(0)';
                           }}
                         >
-                          <FiChevronRight size={14} color="#FF9900" />
+                          <FiChevronRight size={14} color="#FF4500" />
                           <span>{link.label}</span>
                         </Link>
                       </li>
@@ -184,7 +188,7 @@ export default function Footer() {
               <h4 style={{
                 fontSize: 13,
                 fontWeight: 900,
-                color: '#FF9900',
+                color: '#FF4500',
                 letterSpacing: '1.4px',
                 textTransform: 'uppercase',
                 marginBottom: 18,
@@ -206,15 +210,15 @@ export default function Footer() {
                       transition: 'color 0.18s ease',
                       textShadow: '0 2px 6px rgba(0,0,0,0.5)',
                     }}
-                    onMouseEnter={e => e.currentTarget.style.color = '#FF9900'}
+                    onMouseEnter={e => e.currentTarget.style.color = '#FF4500'}
                     onMouseLeave={e => e.currentTarget.style.color = '#FFFFFF'}
                   >
                     <div style={{
                       width: 36, height: 36, borderRadius: 10,
-                      background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                      background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
-                      boxShadow: '0 4px 14px rgba(255, 153, 0, 0.40)',
+                      boxShadow: '0 4px 14px rgba(230, 46, 0, 0.40)',
                     }}>
                       <FiPhone size={15} color="#FFFFFF" />
                     </div>
@@ -237,15 +241,15 @@ export default function Footer() {
                       wordBreak: 'break-all',
                       textShadow: '0 2px 6px rgba(0,0,0,0.5)',
                     }}
-                    onMouseEnter={e => e.currentTarget.style.color = '#FF9900'}
+                    onMouseEnter={e => e.currentTarget.style.color = '#FF4500'}
                     onMouseLeave={e => e.currentTarget.style.color = '#FFFFFF'}
                   >
                     <div style={{
                       width: 36, height: 36, borderRadius: 10,
-                      background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                      background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
-                      boxShadow: '0 4px 14px rgba(255, 153, 0, 0.40)',
+                      boxShadow: '0 4px 14px rgba(230, 46, 0, 0.40)',
                     }}>
                       <FiMail size={15} color="#FFFFFF" />
                     </div>
@@ -257,10 +261,10 @@ export default function Footer() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 13.5, color: '#FFFFFF', fontWeight: 800, textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
                     <div style={{
                       width: 36, height: 36, borderRadius: 10,
-                      background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                      background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
-                      boxShadow: '0 4px 14px rgba(255, 153, 0, 0.40)',
+                      boxShadow: '0 4px 14px rgba(230, 46, 0, 0.40)',
                     }}>
                       <FiMapPin size={15} color="#FFFFFF" />
                     </div>
@@ -271,7 +275,7 @@ export default function Footer() {
 
               {/* Dynamic WhatsApp Button */}
               <a
-                href={`https://wa.me/${whatsappNumber}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedar Car Rental")},%20I%20want%20to%20book%20a%20car.`}
+                href={`https://wa.me/${whatsappNumber}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedarnath Tours & Travels")},%20I%20want%20to%20book%20a%20car.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -310,7 +314,7 @@ export default function Footer() {
             gap: 12,
           }}>
             <p style={{ fontSize: 13, color: '#CBD5E1', margin: 0, fontWeight: 600, textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
-              © {new Date().getFullYear()} <strong style={{ color: '#FFFFFF' }}>{settings?.businessName || "Jay Kedar Car Rental"}</strong>. All rights reserved.
+              © {new Date().getFullYear()} <strong style={{ color: '#FFFFFF' }}>{settings?.businessName || "Jay Kedarnath Tours & Travels"}</strong>. All rights reserved.
             </p>
 
             <div style={{ display: 'flex', gap: 14, fontSize: 12.5, color: '#CBD5E1', fontWeight: 700, flexWrap: 'wrap', textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
@@ -318,7 +322,7 @@ export default function Footer() {
               <span>•</span>
               <Link to="/contact" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })} style={{ color: '#FFFFFF', textDecoration: 'none' }}>Contact Support</Link>
               <span>•</span>
-              <Link to="/fleet" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })} style={{ color: '#FFFFFF', textDecoration: 'none' }}>Self Drive Fleet</Link>
+              <Link to="/fleet" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })} style={{ color: '#FFFFFF', textDecoration: 'none' }}>Travel &amp; Tour Fleet</Link>
             </div>
           </div>
         </div>

@@ -397,7 +397,7 @@ export default function CarDetailPage() {
                 {/* 1-Click WhatsApp & Instagram Direct Inquiry */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 4 }}>
                   <a
-                    href={`https://wa.me/918485877633?text=Hi%20Jay%20Kedar%20Car%20Rental%2C%20I%20want%20to%20inquire%20about%20renting%20${encodeURIComponent(car.name)}%20(${encodeURIComponent(car.category || 'Self-Drive')})%20for%20${encodeURIComponent(formatCurrency(car.pricePerDay))}/day.%20Please%20confirm%20availability.`}
+                    href={`https://wa.me/918485877633?text=Hi%20Jay%20Kedarnath%20Tours%20%26%20Travels%2C%20I%20want%20to%20inquire%20about%20booking%20${encodeURIComponent(car.name)}%20(${encodeURIComponent(car.category || 'Travel Vehicle')})%20for%20${encodeURIComponent(formatCurrency(car.pricePerDay))}/day.%20Please%20confirm%20availability.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
@@ -419,7 +419,7 @@ export default function CarDetailPage() {
                   </a>
 
                   <a
-                    href={`https://ig.me/m/founder_abhishek?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')}%2C%20I%20want%20to%20inquire%20about%20renting%20${encodeURIComponent(car.name)}%20(${encodeURIComponent(car.category || 'Self-Drive')})%20for%20${encodeURIComponent(formatCurrency(car.pricePerDay))}/day.%20Please%20confirm%20availability.`}
+                    href={`https://ig.me/m/founder_abhishek?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedarnath Tours & Travels')}%2C%20I%20want%20to%20inquire%20about%20booking%20${encodeURIComponent(car.name)}%20(${encodeURIComponent(car.category || 'Travel Vehicle')})%20for%20${encodeURIComponent(formatCurrency(car.pricePerDay))}/day.%20Please%20confirm%20availability.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{

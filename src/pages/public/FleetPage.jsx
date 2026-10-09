@@ -107,7 +107,7 @@ export default function FleetPage() {
                 </p>
                 {cars.length === 0 ? (
                   <a
-                    href={`https://wa.me/${settings?.whatsapp || '918485877633'}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')}%2C%20I%20want%20to%20inquire%20about%20vehicle%20availability.`}
+                    href={`https://wa.me/${settings?.whatsapp || '918485877633'}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedarnath Tours & Travels')}%2C%20I%20want%20to%20inquire%20about%20vehicle%20availability.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-primary btn-sm"

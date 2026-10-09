@@ -139,7 +139,7 @@ export default function BookingForm({ car, onSuccess }) {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, width: '100%', marginTop: 8 }}>
           <a
-            href={`https://wa.me/${settings?.whatsapp || '918485877633'}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')}%2C%20I%20just%20submitted%20a%20booking%20inquiry%20for%20${encodeURIComponent(car?.name || selectedCarName || 'Fleet Car')}%20(${daysCount}%20Days${estimatedPrice ? `%2C%20Est%20₹${estimatedPrice}` : ''}).%20Name%3A%20${encodeURIComponent(formData.customerName)}.`}
+            href={`https://wa.me/${settings?.whatsapp || '918485877633'}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedarnath Tours & Travels')}%2C%20I%20just%20submitted%20a%20booking%20inquiry%20for%20${encodeURIComponent(car?.name || selectedCarName || 'Fleet Car')}%20(${daysCount}%20Days${estimatedPrice ? `%2C%20Est%20₹${estimatedPrice}` : ''}).%20Name%3A%20${encodeURIComponent(formData.customerName)}.`}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -160,7 +160,7 @@ export default function BookingForm({ car, onSuccess }) {
           </a>
 
           <a
-            href={`https://ig.me/m/founder_abhishek?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')}%2C%20I%20just%20submitted%20a%20booking%20inquiry%20for%20${encodeURIComponent(car?.name || selectedCarName || 'Fleet Car')}%20(${daysCount}%20Days${estimatedPrice ? `%2C%20Est%20₹${estimatedPrice}` : ''}).%20Name%3A%20${encodeURIComponent(formData.customerName)}.`}
+            href={`https://ig.me/m/founder_abhishek?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedarnath Tours & Travels')}%2C%20I%20just%20submitted%20a%20booking%20inquiry%20for%20${encodeURIComponent(car?.name || selectedCarName || 'Fleet Car')}%20(${daysCount}%20Days${estimatedPrice ? `%2C%20Est%20₹${estimatedPrice}` : ''}).%20Name%3A%20${encodeURIComponent(formData.customerName)}.`}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -345,7 +345,7 @@ export default function BookingForm({ car, onSuccess }) {
                 fontWeight: 700,
                 padding: '0 6px',
                 justifyContent: 'center',
-                background: formData.pickupType === 'delivery' ? 'linear-gradient(135deg, #FF4500 0%, #E66E00 100%)' : '#FFFFFF',
+                background: formData.pickupType === 'delivery' ? 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)' : '#FFFFFF',
                 borderColor: formData.pickupType === 'delivery' ? '#FF4500' : '#CBD5E1',
               }}
             >
@@ -360,7 +360,7 @@ export default function BookingForm({ car, onSuccess }) {
                 fontWeight: 700,
                 padding: '0 6px',
                 justifyContent: 'center',
-                background: formData.pickupType === 'self-pickup' ? 'linear-gradient(135deg, #FF4500 0%, #E66E00 100%)' : '#FFFFFF',
+                background: formData.pickupType === 'self-pickup' ? 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)' : '#FFFFFF',
                 borderColor: formData.pickupType === 'self-pickup' ? '#FF4500' : '#CBD5E1',
               }}
             >
@@ -378,17 +378,19 @@ export default function BookingForm({ car, onSuccess }) {
         disabled={submitting || !agreedToTerms}
         className="btn btn-primary btn-lg w-full"
         style={{
-          background: '#FF4500',
-          borderColor: '#FF4500',
+          background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%)',
+          border: 'none',
+          boxShadow: '0 6px 20px rgba(230, 46, 0, 0.40)',
           fontSize: 13.5,
           fontWeight: 800,
-          padding: '9px',
+          padding: '10px',
           opacity: agreedToTerms ? 1 : 0.65,
           marginTop: 2,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: 6,
+          color: '#FFFFFF',
         }}
       >
         {submitting ? 'Submitting...' : <><FiSend size={14} /> Submit Rental Inquiry</>}

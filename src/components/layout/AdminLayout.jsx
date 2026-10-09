@@ -19,7 +19,7 @@ import {
 } from 'react-icons/fi';
 import { BsCarFront } from 'react-icons/bs';
 import { useAuth } from '../../contexts/AuthContext';
-import logoImg from '../../assets/Jaylogo1.png';
+import logoImg from '../../assets/Jaylogo2.png';
 
 const navItems = [
   { icon: <FiGrid />, label: 'Dashboard', to: '/admin' },
@@ -56,20 +56,32 @@ export default function AdminLayout({ children }) {
         borderBottom: '1px solid var(--color-border)',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: sidebarOpen ? 'flex-start' : 'center',
+        gap: 10,
       }}>
         <img
           src={logoImg}
-          alt="Jay Kedar Car Rental"
+          alt="Jay Kedarnath Tours & Travels"
           style={{
-            height: sidebarOpen ? 56 : 38,
-            maxWidth: '100%',
+            height: sidebarOpen ? 44 : 36,
+            width: sidebarOpen ? 44 : 36,
             objectFit: 'contain',
             display: 'block',
-            filter: 'drop-shadow(0 2px 8px rgba(255, 69, 0, 0.22))',
-            transition: 'height 0.2s ease',
+            filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12))',
+            transition: 'all 0.2s ease',
+            flexShrink: 0,
           }}
         />
+        {sidebarOpen && (
+          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15, overflow: 'hidden' }}>
+            <span style={{ fontSize: 13.5, fontWeight: 900, color: '#0F172A', whiteSpace: 'nowrap' }}>
+              Jay Kedarnath
+            </span>
+            <span style={{ fontSize: 9, fontWeight: 800, color: '#FF4500', letterSpacing: '0.12em', whiteSpace: 'nowrap' }}>
+              TOURS & TRAVELS ADMIN
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Nav Items */}

@@ -79,9 +79,9 @@ export default function ContactPage() {
         <div style={{ background: '#FFFFFF', borderBottom: '1px solid #E2E8F0', marginBottom: 32 }}>
           <div className="container" style={{ padding: '32px 20px 28px' }}>
             <span style={{
-              background: 'rgba(255, 153, 0, 0.12)',
-              color: '#FF9900',
-              border: '1px solid rgba(255, 153, 0, 0.35)',
+              background: 'rgba(255, 69, 0, 0.08)',
+              color: '#FF4500',
+              border: '1px solid rgba(255, 69, 0, 0.25)',
               padding: '5px 14px',
               borderRadius: '9999px',
               fontSize: 12,
@@ -94,7 +94,7 @@ export default function ContactPage() {
               Contact &amp; Instant Rental Quote
             </span>
             <h1 style={{ fontSize: 'clamp(22px, 4.5vw, 36px)', fontWeight: 900, color: '#111827', margin: '0 0 8px', lineHeight: 1.25 }}>
-              Get in Touch with <span style={{ color: '#FF9900' }}>Self-Drive Support</span>
+              Get in Touch with <span style={{ color: '#FF4500' }}>Tours &amp; Travel Support</span>
             </h1>
             <p style={{ fontSize: 'clamp(13px, 1.8vw, 15px)', color: '#4B5563', margin: 0, maxWidth: 620, lineHeight: 1.6, fontWeight: 600 }}>
               Have questions about daily rental rates, 30-minute doorstep delivery, or outstation packages? Submit your inquiry below or connect live on WhatsApp.
@@ -117,16 +117,16 @@ export default function ContactPage() {
                 background: '#FFFFFF',
                 borderRadius: 24,
                 padding: '28px 30px',
-                border: '1.5px solid rgba(255, 153, 0, 0.35)',
-                boxShadow: '0 12px 40px rgba(255, 153, 0, 0.12)',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 12px 40px rgba(15, 23, 42, 0.08)',
                 overflow: 'hidden',
               }}
             >
-              {/* Signature Golden Vector Wave Accent */}
+              {/* Signature Vector Wave Accent */}
               <div style={{ position: 'absolute', top: 0, right: 0, width: 95, height: 95, overflow: 'hidden', borderTopRightRadius: 24, pointerEvents: 'none', zIndex: 1 }}>
                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-                  <path d="M0 0 C50 10, 90 40, 100 100 L100 0 Z" fill="#FF9900" opacity="0.30" />
-                  <path d="M20 0 C65 15, 95 50, 100 85 L100 0 Z" fill="#FFA800" opacity="0.55" />
+                  <path d="M0 0 C50 10, 90 40, 100 100 L100 0 Z" fill="#FF4500" opacity="0.15" />
+                  <path d="M20 0 C65 15, 95 50, 100 85 L100 0 Z" fill="#E62E00" opacity="0.30" />
                 </svg>
               </div>
 
@@ -134,10 +134,10 @@ export default function ContactPage() {
                 <div style={{ textAlign: 'center', padding: '36px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, position: 'relative', zIndex: 2 }}>
                   <div style={{
                     width: 60, height: 60, borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                    background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
                     color: '#FFFFFF',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: '0 6px 20px rgba(255, 153, 0, 0.40)',
+                    boxShadow: '0 6px 20px rgba(230, 46, 0, 0.40)',
                   }}>
                     <FiCheckCircle size={30} />
                   </div>
@@ -147,7 +147,7 @@ export default function ContactPage() {
                   </p>
                   <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
                     <a
-                      href={`https://wa.me/${whatsapp.replace(/\D/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedar Car Rental")},%20I%20just%20submitted%20a%20contact%20inquiry.`}
+                      href={`https://wa.me/${whatsapp.replace(/\D/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedarnath Tours & Travels")},%20I%20just%20submitted%20a%20contact%20inquiry.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-primary"
@@ -169,7 +169,7 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16, position: 'relative', zIndex: 2 }}>
                   <div>
                     <h2 style={{ fontSize: 20, fontWeight: 900, color: '#111827', margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <BsCarFront color="#FF9900" size={22} /> Reserve or Inquire Vehicle
+                      <BsCarFront color="#FF4500" size={22} /> Reserve or Inquire Vehicle
                     </h2>
                     <span style={{ fontSize: 13, color: '#6B7280', fontWeight: 600 }}>
                       Fill in your details below for instant doorstep delivery quote.
@@ -260,17 +260,18 @@ export default function ContactPage() {
                     disabled={submitting}
                     className="btn btn-primary btn-lg w-full"
                     style={{
-                      background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
-                      borderColor: '#FF9900',
+                      background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%)',
+                      border: 'none',
                       fontSize: 15,
                       fontWeight: 900,
-                      padding: '12px',
+                      padding: '13px',
                       borderRadius: '9999px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       gap: 8,
-                      boxShadow: '0 6px 20px rgba(255, 153, 0, 0.35)',
+                      boxShadow: '0 6px 20px rgba(230, 46, 0, 0.40)',
+                      color: '#FFFFFF',
                     }}
                   >
                     {submitting ? 'Submitting Message...' : <><FiSend size={16} /> Submit Inquiry Message</>}
@@ -288,9 +289,9 @@ export default function ContactPage() {
                 position: 'relative',
                 borderRadius: 24,
                 overflow: 'hidden',
-                border: '1.5px solid rgba(255, 153, 0, 0.40)',
-                boxShadow: '0 12px 40px rgba(255, 153, 0, 0.16)',
-                background: `linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 251, 235, 0.95) 100%), url("${heroBgImg}")`,
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 12px 40px rgba(15, 23, 42, 0.08)',
+                background: `linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(241, 245, 249, 0.95) 100%), url("${heroBgImg}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
                 padding: '28px 24px',
@@ -300,11 +301,11 @@ export default function ContactPage() {
                 gap: 20,
               }}
             >
-              {/* Signature Golden Vector Wave Accent */}
+              {/* Signature Vector Wave Accent */}
               <div style={{ position: 'absolute', top: 0, right: 0, width: 85, height: 85, overflow: 'hidden', borderTopRightRadius: 24, pointerEvents: 'none', zIndex: 1 }}>
                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-                  <path d="M0 0 C50 10, 90 40, 100 100 L100 0 Z" fill="#FF9900" opacity="0.45" />
-                  <path d="M20 0 C65 15, 95 50, 100 85 L100 0 Z" fill="#FFA800" opacity="0.75" />
+                  <path d="M0 0 C50 10, 90 40, 100 100 L100 0 Z" fill="#FF4500" opacity="0.15" />
+                  <path d="M20 0 C65 15, 95 50, 100 85 L100 0 Z" fill="#E62E00" opacity="0.30" />
                 </svg>
               </div>
 
@@ -313,14 +314,14 @@ export default function ContactPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 6,
-                  background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                  background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
                   color: '#FFFFFF',
                   padding: '6px 14px',
                   borderRadius: 99,
                   fontSize: 12,
                   fontWeight: 900,
                   marginBottom: 14,
-                  boxShadow: '0 4px 14px rgba(255, 153, 0, 0.35)',
+                  boxShadow: '0 4px 14px rgba(230, 46, 0, 0.35)',
                   letterSpacing: '0.5px',
                 }}>
                   <FiZap size={15} /> 30-MIN EMERGENCY DISPATCH
@@ -331,14 +332,14 @@ export default function ContactPage() {
                 </h3>
 
                 <p style={{ fontSize: 13.5, color: '#334155', margin: '0 0 18px', lineHeight: 1.6, fontWeight: 600 }}>
-                  Get 100% sanitized self-drive car doorstep drop anywhere in Pune &amp; PCMC within <strong style={{ color: '#FF9900' }}>30 minutes</strong>! Direct 1-click booking below.
+                  Get 100% sanitized travel vehicles with prompt doorstep pickup anywhere in Pune &amp; PCMC within <strong style={{ color: '#FF4500' }}>30 minutes</strong>! Direct 1-click booking below.
                 </p>
 
                 {/* Checklist Pills */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
                   {[
-                    '30-Min Doorstep Drop Guarantee',
-                    'Unlimited Daily Kilometers Package',
+                    '30-Min Prompt Pickup Guarantee',
+                    'Affordable Outstation & Tour Packages',
                     'Zero Security Deposit Hassle',
                     '24/7 Roadside Assistance & Support',
                   ].map((feat, idx) => (
@@ -352,7 +353,7 @@ export default function ContactPage() {
                       background: 'rgba(255, 255, 255, 0.85)',
                       padding: '8px 12px',
                       borderRadius: 12,
-                      border: '1px solid rgba(255, 153, 0, 0.25)',
+                      border: '1px solid #E2E8F0',
                     }}>
                       <FiCheckCircle color="#22C55E" size={16} style={{ flexShrink: 0 }} />
                       <span>{feat}</span>
@@ -368,8 +369,8 @@ export default function ContactPage() {
                 background: '#FFFFFF',
                 padding: '14px 16px',
                 borderRadius: 16,
-                border: '1.5px solid rgba(255, 153, 0, 0.35)',
-                boxShadow: '0 4px 14px rgba(255, 153, 0, 0.12)',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 4px 14px rgba(15, 23, 42, 0.05)',
               }}>
                 <span style={{ fontSize: 11, color: '#6B7280', textTransform: 'uppercase', fontWeight: 800, display: 'block', letterSpacing: '0.5px' }}>
                   Direct Helpline Hotline:
@@ -378,7 +379,7 @@ export default function ContactPage() {
                   href={`tel:${phone.replace(/\s+/g, '')}`}
                   style={{ fontSize: 20, fontWeight: 900, color: '#111827', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}
                 >
-                  <FiPhoneCall color="#FF9900" size={20} />
+                  <FiPhoneCall color="#FF4500" size={20} />
                   <span>{phone}</span>
                 </a>
               </div>
@@ -408,7 +409,7 @@ export default function ContactPage() {
                 </a>
 
                 <a
-                  href={`https://wa.me/${whatsapp.replace(/\D/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedar Car Rental")},%20I%20need%20URGENT%20car%20delivery%20in%2030%20minutes.`}
+                  href={`https://wa.me/${whatsapp.replace(/\D/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedarnath Tours & Travels")},%20I%20need%20URGENT%20car%20delivery%20in%2030%20minutes.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary"
@@ -495,7 +496,7 @@ export default function ContactPage() {
                   background: '#FFFFFF',
                   borderRadius: 18,
                   padding: '16px 18px',
-                  border: '1.5px solid rgba(255, 153, 0, 0.30)',
+                  border: '1px solid #E2E8F0',
                   boxShadow: '0 4px 16px rgba(15, 23, 42, 0.04)',
                   display: 'flex',
                   alignItems: 'center',
@@ -506,13 +507,13 @@ export default function ContactPage() {
                   width: 42,
                   height: 42,
                   borderRadius: 12,
-                  background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                  background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
                   color: '#FFFFFF',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   flexShrink: 0,
-                  boxShadow: '0 4px 12px rgba(255, 153, 0, 0.30)',
+                  boxShadow: '0 4px 12px rgba(230, 46, 0, 0.30)',
                 }}>
                   {item.icon}
                 </div>

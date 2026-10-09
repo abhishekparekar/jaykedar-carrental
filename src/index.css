@@ -1,18 +1,18 @@
 /* ============================================
-   SA SELF DRIVE CARS — DESIGN SYSTEM
-   80% White | 10% Black | 10% Vibrant Orange Gradient
+   JAY KEDARNATH TOURS & TRAVELS — DESIGN SYSTEM
+   Deep Kedarnath Royal Navy | Sacred Saffron Gold | Pure White
    ============================================ */
 
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap');
 
 :root {
-  /* 🎨 Primary Brand Colors (Aligned with User Vector Background Image) */
-  --color-primary-orange: #FF9900;
-  --color-primary-hover: #FFA800;
-  --color-dark-charcoal: #1A1D29;
-  --color-dark-hover: #2B3245;
-  --color-deep-black: #0B0F19;
+  /* 🎨 Primary Brand Colors (Harmonized with Jay Kedarnath Logo Emblem) */
+  --color-primary-orange: #FF4500;
+  --color-primary-hover: #E63900;
+  --color-dark-charcoal: #0B2545;
+  --color-dark-hover: #133E87;
+  --color-deep-black: #0A192F;
   --color-white: #FFFFFF;
   --color-light-gray: #F5F7FA;
   --color-border-gray: #E5E7EB;
@@ -20,25 +20,25 @@
   /* 🏛️ Layout Backgrounds */
   --color-bg: #FFFFFF;
   --color-bg-sections: #F8FAFC;
-  --color-bg-footer: #0B0F19;
+  --color-bg-footer: #0A192F;
   --color-surface: #FFFFFF;
   --color-surface-2: #F8FAFC;
   --color-border: #E5E7EB;
   --color-border-2: #D1D5DB;
 
-  /* 🔘 Buttons Palette */
-  --color-accent: #FF9900;
-  --color-accent-light: #FFA800;
-  --color-accent-hover: #FFA800;
-  --gradient-accent-btn: linear-gradient(135deg, #FF9900 0%, #FFA800 100%);
-  --gradient-secondary-btn: linear-gradient(135deg, #1A1D29 0%, #2B3245 100%);
-  --gradient-hero-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.10) 100%);
-  --gradient-primary: linear-gradient(135deg, #FF9900 0%, #FFA800 50%, #FFB800 100%);
-  --gradient-dark: linear-gradient(135deg, #0B0F19 0%, #1A1D29 50%, #2B3245 100%);
+  /* 🔘 Buttons Palette — Premium Linear Gradients (Zero Yellow) */
+  --color-accent: #FF4500;
+  --color-accent-light: #FF5E36;
+  --color-accent-hover: #E62E00;
+  --gradient-accent-btn: linear-gradient(135deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%);
+  --gradient-secondary-btn: linear-gradient(135deg, #0B2545 0%, #133E87 100%);
+  --gradient-hero-overlay: linear-gradient(180deg, rgba(10, 25, 47, 0.70) 0%, rgba(15, 23, 42, 0.88) 100%);
+  --gradient-primary: linear-gradient(135deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%);
+  --gradient-dark: linear-gradient(135deg, #0A192F 0%, #0B2545 50%, #133E87 100%);
 
-  --color-accent-glow: rgba(255, 107, 0, 0.25);
-  --color-accent-bg: rgba(255, 107, 0, 0.08);
-  --color-accent-border: rgba(255, 107, 0, 0.25);
+  --color-accent-glow: rgba(230, 46, 0, 0.35);
+  --color-accent-bg: rgba(230, 46, 0, 0.08);
+  --color-accent-border: rgba(230, 46, 0, 0.25);
 
   /* ✍️ Typography Colors */
   --color-heading: #111827;
@@ -675,13 +675,13 @@ ol {
   cursor: not-allowed;
 }
 
-/* ── Primary Button (Solid Orange #FF5500 | Sharp Rectangular Shape | Soft Glowing Shadow) ── */
+/* ── Primary Button (Rich Sacred Saffron to Crimson Flame Linear Gradient | Zero Yellow) ── */
 .btn-primary {
-  background: #FF5500 !important;
+  background: linear-gradient(135deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%) !important;
   color: #FFFFFF !important;
-  box-shadow: 0 10px 25px -4px rgba(255, 85, 0, 0.45), 0 4px 10px rgba(255, 85, 0, 0.25) !important;
+  box-shadow: 0 8px 24px -2px rgba(230, 46, 0, 0.42), 0 4px 10px rgba(230, 46, 0, 0.20) !important;
   border: none !important;
-  border-radius: 4px !important;
+  border-radius: 6px !important;
   position: relative;
   overflow: hidden;
   font-weight: 700 !important;
@@ -696,7 +696,7 @@ ol {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
   transition: left 0.55s ease;
 }
 
@@ -705,27 +705,27 @@ ol {
 }
 
 .btn-primary:hover {
-  background: #FF6600 !important;
-  box-shadow: 0 14px 32px -4px rgba(255, 85, 0, 0.60) !important;
+  background: linear-gradient(135deg, #FF5E36 0%, #FF3D12 50%, #D82404 100%) !important;
+  box-shadow: 0 12px 30px -2px rgba(230, 46, 0, 0.55), 0 6px 14px rgba(230, 46, 0, 0.30) !important;
   transform: translateY(-2px);
 }
 
-/* ── Secondary Button (Background: #1A1D29 | Hover: #2B3245 | Text: White) ── */
+/* ── Secondary Button (Deep Royal Navy Linear Gradient | Crisp Slate Glow) ── */
 .btn-secondary {
-  background: #1A1D29 !important;
+  background: linear-gradient(135deg, #0B2545 0%, #133E87 100%) !important;
   color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 16px rgba(26, 29, 41, 0.25);
-  border-radius: 4px !important;
-  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 4px 16px rgba(11, 37, 69, 0.30);
+  border-radius: 6px !important;
+  font-weight: 700 !important;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-secondary:hover {
-  background: #2B3245 !important;
+  background: linear-gradient(135deg, #133E87 0%, #1E40AF 100%) !important;
   color: #FFFFFF !important;
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 8px 24px rgba(26, 29, 41, 0.38);
+  border-color: rgba(255, 255, 255, 0.32) !important;
+  box-shadow: 0 8px 24px rgba(19, 62, 135, 0.45);
   transform: translateY(-2px);
 }
 
@@ -1160,21 +1160,22 @@ ol {
   position: relative;
   padding: 22px 16px;
   text-align: center;
-  background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+  background: #FFFFFF;
   border-radius: 20px;
-  border: 1.5px solid rgba(255, 153, 0, 0.35);
-  box-shadow: 0 6px 20px rgba(255, 153, 0, 0.08);
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justifyContent: center;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .home-category-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(255, 153, 0, 0.20);
+  box-shadow: 0 12px 28px rgba(230, 46, 0, 0.14);
+  border-color: rgba(255, 69, 0, 0.35);
 }
 .home-category-wave {
   position: absolute;
@@ -1193,13 +1194,13 @@ ol {
   width: 54px;
   height: 54px;
   border-radius: 16px;
-  background: linear-gradient(135deg, #FF9900 0%, #FFA800 100%);
+  background: linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%);
   color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 12px;
-  box-shadow: 0 6px 16px rgba(255, 153, 0, 0.35);
+  box-shadow: 0 6px 16px rgba(230, 46, 0, 0.35);
 }
 .home-category-title {
   position: relative;
@@ -1228,15 +1229,21 @@ ol {
 .home-feature-card {
   position: relative;
   padding: 22px 18px;
-  background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+  background: #FFFFFF;
   border-radius: 20px;
-  border: 1.5px solid rgba(255, 153, 0, 0.35);
-  box-shadow: 0 6px 20px rgba(255, 153, 0, 0.08);
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
   display: flex;
   flex-direction: column;
   gap: 10px;
   overflow: hidden;
   height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.home-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(230, 46, 0, 0.14);
+  border-color: rgba(255, 69, 0, 0.35);
 }
 
 /* Tablet: 2x2 grid */

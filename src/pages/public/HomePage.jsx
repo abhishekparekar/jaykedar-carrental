@@ -22,27 +22,27 @@ import BookingForm from '../../components/ui/BookingForm';
 import { useTenant } from '../../contexts/TenantContext';
 import { subscribeToCars, subscribeToReviews } from '../../firebase/firestore';
 
-import heroBgImg from '../../assets/herobg2.jpg';
-import logoImg from '../../assets/Jaylogo1.png';
+import heroBgImg from '../../assets/tours_hero_bg.jpg';
+import logoImg from '../../assets/Jaylogo2.png';
 import coupleTalkImg from '../../assets/happy_couple_talk.png';
 
-const CITIES = ['Pune', 'Mumbai', 'Delhi NCR', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata'];
+const CITIES = ['Pune', 'Mumbai', 'Nashik', 'Shirdi', 'Mahabaleshwar', 'Goa', 'Kolhapur'];
 
 const CATEGORIES = [
-  { id: 'hatchback', name: 'Hatchback', desc: 'Swift, i20, Baleno — Easy city handling & peppy drive', icon: <BsCarFront size={24} /> },
-  { id: 'sedan', name: 'Sedan & CNG', desc: 'Dzire CNG — Maximum fuel efficiency for long trips', icon: <BsCarFrontFill size={24} /> },
-  { id: 'suv', name: 'SUV & 4x4', desc: 'Thar 4x4, Punch, Venue — Off-road power & ground clearance', icon: <FiTruck size={24} /> },
-  { id: 'muv', name: '7-Seater MUV', desc: 'Ertiga Manual & Automatic — Spacious 7-seater family comfort', icon: <BsCarFront size={24} /> },
+  { id: 'hatchback', name: 'Hatchback', desc: 'Swift, i20, Baleno — Perfect for local city & daily commute', icon: <BsCarFront size={24} /> },
+  { id: 'sedan', name: 'Sedan & Premium', desc: 'Dzire, Ciaz — Maximum comfort for outstation & business trips', icon: <BsCarFrontFill size={24} /> },
+  { id: 'suv', name: 'SUV & Tourer', desc: 'Innova, Scorpio, Thar — Powerful travel across hill stations & highways', icon: <FiTruck size={24} /> },
+  { id: 'muv', name: '7-Seater Family MUV', desc: 'Ertiga & Innova Crysta — Spacious family tours & pilgrimage packages', icon: <BsCarFront size={24} /> },
 ];
 
 const FEATURES = [
-  { icon: <FiTruck size={22} />, title: 'Doorstep Delivery', desc: 'Sanitized cars delivered right to your home or airport terminal.' },
-  { icon: <FiKey size={22} />, title: 'Unlimited Kilometers', desc: 'Drive freely without counting kilometers or extra per-km fees.' },
-  { icon: <FiShield size={22} />, title: 'Insurance Included', desc: 'Comprehensive damage coverage and All India Tourist Permit.' },
-  { icon: <FiClock size={22} />, title: '24/7 Roadside Assist', desc: 'Round-the-clock emergency support and instant vehicle assistance.' },
-  { icon: <FiZap size={22} />, title: 'Zero Security Deposit', desc: 'No heavy deposits blocked. Simple paperless verification.' },
-  { icon: <FiCheckCircle size={22} />, title: 'Deep Sanitized Fleet', desc: '100% sanitized vehicles after every single trip completion.' },
-  { icon: <BsCarFront size={22} />, title: 'Well Maintained Cars', desc: 'Brand new 2024-26 model cars serviced by official dealers.' },
+  { icon: <FiTruck size={22} />, title: 'Doorstep Pickup & Drop', desc: 'Punctual pickup and drop directly at your home, hotel or airport terminal.' },
+  { icon: <FiKey size={22} />, title: 'Outstation & Tour Trips', desc: 'Travel anywhere in Maharashtra, Goa, and all-India tourist destinations.' },
+  { icon: <FiShield size={22} />, title: 'Safe & Insured Fleet', desc: 'Comprehensive commercial insurance and all India tourist permit (AITP).' },
+  { icon: <FiClock size={22} />, title: '24/7 Roadside Assistance', desc: 'Round-the-clock emergency support and courteous customer care on every trip.' },
+  { icon: <FiZap size={22} />, title: 'Affordable Transparent Rates', desc: 'No hidden fees or surge pricing. Crystal clear per-km & package rates.' },
+  { icon: <FiCheckCircle size={22} />, title: 'Deep Sanitized Vehicles', desc: '100% clean, vacuumed, and sanitized vehicles before every departure.' },
+  { icon: <BsCarFront size={22} />, title: 'Experienced & Well-Maintained', desc: 'Modern, well-maintained vehicles ready for long distances and pilgrimages.' },
   { icon: <FiStar size={22} />, title: 'Transparent Pricing', desc: 'No hidden taxes or unexpected surcharges at checkout.' },
 ];
 
@@ -50,7 +50,7 @@ const TESTIMONIALS = [
   { name: 'Rahul Sharma', initials: 'RS', city: 'Pune', role: 'Software Engineer', comment: 'Rented a Fronx for a trip to Lonavala. Car was delivered right at my door in Pune. Super smooth booking experience!', rating: 5, carUsed: 'Maruti Fronx 2026' },
   { name: 'Priya Verma', initials: 'PV', city: 'Bangalore', role: 'Product Manager', comment: 'The Innova Hycross gave us royal comfort for our family road trip to Coorg. 10/10 service and vehicle quality!', rating: 5, carUsed: 'Innova Hycross AT' },
   { name: 'Anish Kulkarni', initials: 'AK', city: 'Mumbai', role: 'Entrepreneur', comment: 'Extremely easy booking process. Rented the Mahindra Thar 4x4 for mountain camping. Highly recommended!', rating: 5, carUsed: 'Thar 4x4 Convertible' },
-  { name: 'Sneha Deshmukh', initials: 'SD', city: 'Hyderabad', role: 'Architect', comment: 'Zero security deposit hassle and 100% clean sanitized car. NextRent is now my go-to self-drive app!', rating: 5, carUsed: 'Hyundai Creta' },
+  { name: 'Sneha Deshmukh', initials: 'SD', city: 'Hyderabad', role: 'Architect', comment: 'Zero security deposit hassle and 100% clean sanitized car. Jay Kedarnath is now our go-to tours & travels service!', rating: 5, carUsed: 'Hyundai Creta' },
   { name: 'Deepak Patel', initials: 'DP', city: 'Delhi NCR', role: 'Business Owner', comment: 'Booked Scorpio N for a 5-day trip to Manali. Unlimited km option saved us so much money on fuel & fees!', rating: 5, carUsed: 'Scorpio N 2025' },
   { name: 'Meera Kapoor', initials: 'MK', city: 'Chennai', role: 'Design Lead', comment: 'Doorstep drop and pick up made my weekend drive completely stress-free. Premium service quality!', rating: 5, carUsed: 'Swift ZXi' },
 ];
@@ -102,25 +102,22 @@ export default function HomePage() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#F7F7F8' }}>
       <Navbar />
 
-      {/* 1. CINEMATIC VECTOR HERO SECTION */}
+      {/* 1. CINEMATIC TOURS & TRAVELS HERO SECTION */}
       <section
         className="hero-bg-section"
         style={{
-          backgroundImage: `url("${heroBgImg}")`,
+          backgroundImage: `linear-gradient(180deg, rgba(10, 25, 47, 0.72) 0%, rgba(15, 23, 42, 0.88) 100%), url("${heroBgImg}")`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center right',
+          backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundColor: '#FFFFFF',
-          paddingTop: 80,
-          paddingBottom: 48,
+          backgroundColor: '#0A192F',
+          paddingTop: 104,
+          paddingBottom: 68,
           position: 'relative',
         }}
       >
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ margin: '0 auto', textAlign: 'center', maxWidth: 1000 }}>
-
-
-
             {/* Main Premium Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -128,24 +125,25 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="hero-main-title"
               style={{
-                color: '#111827',
+                color: '#FFFFFF',
                 fontWeight: 900,
                 lineHeight: 1.15,
                 fontSize: 'clamp(2.4rem, 5.8vw, 4.2rem)',
                 letterSpacing: '-0.02em',
                 marginBottom: 18,
+                textShadow: '0 4px 24px rgba(0, 0, 0, 0.50)',
               }}
             >
-              <span>DRIVE YOUR CAR YOUR WAY</span><br />
+              <span>EXPLORE EVERY JOURNEY YOUR WAY</span><br />
               <span style={{
-                background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 50%, #FFB800 100%)',
+                background: 'linear-gradient(135deg, #FF4B1F 0%, #FF5E36 50%, #FF8A00 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 fontWeight: 900,
                 fontStyle: 'italic',
               }}>
-                Premium Self-Drive Cars
+                Premium Tours &amp; Travels Services
               </span>
             </motion.h1>
 
@@ -155,15 +153,16 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               style={{
-                color: '#4B5563',
+                color: '#E2E8F0',
                 fontSize: 'clamp(15px, 2.2vw, 18px)',
-                fontWeight: 700,
-                maxWidth: 760,
+                fontWeight: 600,
+                maxWidth: 780,
                 margin: '0 auto 32px',
                 lineHeight: 1.6,
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.50)',
               }}
             >
-              Doorstep delivery in 30 minutes • 300 km daily package • Zero security deposit • 100% sanitized fleet.
+              Outstation Trips • Pilgrimages &amp; Holiday Tours • Local City Travel • 24/7 Verified Vehicle Fleet with Doorstep Pickup in Pune.
             </motion.p>
 
             {/* Hero Action CTA Buttons */}
@@ -187,9 +186,9 @@ export default function HomePage() {
                   fontSize: 16,
                   fontWeight: 900,
                   borderRadius: '9999px',
-                  background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                  background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%)',
                   color: '#FFFFFF',
-                  boxShadow: '0 8px 30px rgba(255, 153, 0, 0.40)',
+                  boxShadow: '0 8px 30px rgba(230, 46, 0, 0.40)',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 10,
@@ -197,10 +196,10 @@ export default function HomePage() {
                   transition: 'all 0.25s ease',
                 }}
               >
-                <BsCarFront size={19} /> Explore All Fleet
+                <BsCarFront size={19} /> Explore Travel Fleet
               </Link>
               <a
-                href={`https://wa.me/${(settings?.whatsapp || '918485877633').replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')},%20I%20want%20to%20inquire%20about%20booking%20a%20car.`}
+                href={`https://wa.me/${(settings?.whatsapp || '918485877633').replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedarnath Tours & Travels')},%20I%20want%20to%20inquire%20about%20booking%20a%20vehicle.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-secondary"
@@ -209,10 +208,11 @@ export default function HomePage() {
                   fontSize: 16,
                   fontWeight: 900,
                   borderRadius: '9999px',
-                  background: '#111827',
+                  background: 'rgba(255, 255, 255, 0.12)',
+                  backdropFilter: 'blur(10px)',
                   color: '#FFFFFF',
-                  border: '1.5px solid #1F2937',
-                  boxShadow: '0 8px 25px rgba(17, 24, 39, 0.25)',
+                  border: '1.5px solid rgba(255, 255, 255, 0.30)',
+                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.30)',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 10,
@@ -302,7 +302,7 @@ export default function HomePage() {
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
             <div>
               <span className="section-label">Full Fleet</span>
-              <h2 className="section-title" style={{ margin: 0 }}>All Available <span>Self-Drive Cars</span></h2>
+              <h2 className="section-title" style={{ margin: 0 }}>All Available <span>Tour &amp; Travel Vehicles</span></h2>
             </div>
             <Link to="/fleet" className="btn btn-secondary btn-sm">
               View All Fleet <FiArrowRight />
@@ -347,7 +347,7 @@ export default function HomePage() {
                 Our fleet is currently being updated. You can still submit a custom inquiry below or message us directly on WhatsApp.
               </p>
               <a
-                href={`https://wa.me/${settings?.whatsapp || '918485877633'}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')}%2C%20I%20want%20to%20inquire%20about%20vehicle%20availability.`}
+                href={`https://wa.me/${settings?.whatsapp || '918485877633'}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedarnath Tours & Travels')}%2C%20I%20want%20to%20inquire%20about%20vehicle%20availability.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary btn-sm"
@@ -418,11 +418,11 @@ export default function HomePage() {
                   transition={{ duration: 0.2 }}
                   className="home-category-card"
                 >
-                  {/* Signature Vector Golden Wave Curve */}
+                  {/* Signature Vector Curve */}
                   <div className="home-category-wave">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-                      <path d="M0 0 C50 10, 90 40, 100 100 L100 0 Z" fill="#FF9900" opacity="0.30" />
-                      <path d="M20 0 C65 15, 95 50, 100 85 L100 0 Z" fill="#FFA800" opacity="0.55" />
+                      <path d="M0 0 C50 10, 90 40, 100 100 L100 0 Z" fill="#FF4500" opacity="0.15" />
+                      <path d="M20 0 C65 15, 95 50, 100 85 L100 0 Z" fill="#E62E00" opacity="0.30" />
                     </svg>
                   </div>
 
@@ -440,9 +440,9 @@ export default function HomePage() {
 
       {/* 4.5 DIRECT HOMEPAGE INQUIRY FORM SECTION — 2-COLUMN LAYOUT */}
       <section id="inquiry-form-section" style={{
-        background: 'linear-gradient(135deg, #FFFDF5 0%, #FFFBEB 100%)',
-        borderTop: '1px solid rgba(255, 153, 0, 0.25)',
-        borderBottom: '1px solid rgba(255, 153, 0, 0.25)',
+        background: 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%)',
+        borderTop: '1px solid #E2E8F0',
+        borderBottom: '1px solid #E2E8F0',
         padding: '50px 0',
         position: 'relative',
         overflow: 'hidden',
@@ -450,9 +450,9 @@ export default function HomePage() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="section-header text-center" style={{ marginBottom: 32 }}>
             <span className="section-label" style={{
-              background: 'rgba(255, 153, 0, 0.12)',
-              color: '#FF9900',
-              border: '1px solid rgba(255, 153, 0, 0.35)',
+              background: 'rgba(255, 69, 0, 0.08)',
+              color: '#FF4500',
+              border: '1px solid rgba(255, 69, 0, 0.25)',
               padding: '5px 16px',
               borderRadius: '9999px',
               fontSize: 12.5,
@@ -460,10 +460,10 @@ export default function HomePage() {
               letterSpacing: '1px',
               textTransform: 'uppercase',
             }}>
-              Instant Booking & Quote
+              Instant Booking &amp; Quote
             </span>
             <h2 className="section-title" style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 900, color: '#111827', margin: '8px 0 0' }}>
-              Book Your Car in <span style={{ color: '#FF9900' }}>30 Minutes</span>
+              Book Your Car in <span style={{ color: '#FF4500' }}>30 Minutes</span>
             </h2>
           </div>
 
@@ -483,13 +483,13 @@ export default function HomePage() {
                 background: '#FFFFFF',
                 borderRadius: 24,
                 padding: '24px 26px',
-                border: '1.5px solid rgba(255, 153, 0, 0.35)',
-                boxShadow: '0 12px 40px rgba(255, 153, 0, 0.12)',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 12px 40px rgba(15, 23, 42, 0.08)',
                 position: 'relative',
               }}
             >
               <h3 style={{ fontSize: 19, fontWeight: 900, color: '#111827', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <BsCarFront color="#FF9900" size={20} /> Reserve Your Vehicle
+                <BsCarFront color="#FF4500" size={20} /> Reserve Your Vehicle
               </h3>
               <BookingForm car={null} onSuccess={() => toast.success('Rental inquiry submitted! We will reach out shortly.')} />
             </motion.div>
@@ -504,9 +504,9 @@ export default function HomePage() {
                 position: 'relative',
                 borderRadius: 24,
                 overflow: 'hidden',
-                border: '1.5px solid rgba(255, 153, 0, 0.35)',
-                boxShadow: '0 12px 40px rgba(255, 153, 0, 0.14)',
-                background: `linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 251, 235, 0.90) 100%), url("${heroBgImg}")`,
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 12px 40px rgba(15, 23, 42, 0.08)',
+                background: `linear-gradient(180deg, rgba(255, 255, 255, 0.60) 0%, rgba(241, 245, 249, 0.95) 100%), url("${heroBgImg}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
                 padding: 24,
@@ -574,8 +574,8 @@ export default function HomePage() {
                 padding: '12px 18px',
                 borderRadius: 16,
                 background: '#FFFFFF',
-                border: '1px solid rgba(255, 153, 0, 0.30)',
-                boxShadow: '0 6px 20px rgba(255, 153, 0, 0.10)',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 6px 20px rgba(15, 23, 42, 0.06)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -586,7 +586,7 @@ export default function HomePage() {
                   <p style={{ margin: 0, fontSize: 12, color: '#4B5563', fontWeight: 600 }}>Talk directly with our booking expert</p>
                 </div>
                 <a
-                  href={`https://wa.me/${(settings?.whatsapp || '918485877633').replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')},%20I%20want%20to%20inquire%20about%20booking%20a%20car.`}
+                  href={`https://wa.me/${(settings?.whatsapp || '918485877633').replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedarnath Tours & Travels')},%20I%20want%20to%20inquire%20about%20booking%20a%20car.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary"
@@ -595,9 +595,9 @@ export default function HomePage() {
                     fontSize: 13,
                     fontWeight: 900,
                     borderRadius: '9999px',
-                    background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                    background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
                     color: '#FFFFFF',
-                    boxShadow: '0 4px 14px rgba(255, 153, 0, 0.35)',
+                    boxShadow: '0 4px 14px rgba(230, 46, 0, 0.35)',
                     textDecoration: 'none',
                     whiteSpace: 'nowrap',
                   }}
@@ -615,9 +615,9 @@ export default function HomePage() {
         <div className="container">
           <div className="section-header text-center" style={{ marginBottom: 32 }}>
             <span className="section-label" style={{
-              background: 'rgba(255, 153, 0, 0.12)',
-              color: '#FF9900',
-              border: '1px solid rgba(255, 153, 0, 0.35)',
+              background: 'rgba(255, 69, 0, 0.08)',
+              color: '#FF4500',
+              border: '1px solid rgba(255, 69, 0, 0.25)',
               padding: '5px 14px',
               borderRadius: '9999px',
               fontSize: 12,
@@ -625,10 +625,10 @@ export default function HomePage() {
               letterSpacing: '0.8px',
               textTransform: 'uppercase',
             }}>
-              Why Choose {settings?.businessName || "Jay Kedar Car Rental"}
+              Why Choose {settings?.businessName || "Jay Kedarnath Tours & Travels"}
             </span>
             <h2 className="section-title" style={{ fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 900, color: '#111827', margin: '8px 0 0' }}>
-              The Ultimate <span style={{ color: '#FF9900' }}>Self-Drive</span> Experience
+              The Ultimate <span style={{ color: '#FF4500' }}>Tours &amp; Travel</span> Experience
             </h2>
           </div>
 
@@ -640,11 +640,11 @@ export default function HomePage() {
                 transition={{ duration: 0.2 }}
                 className="home-feature-card"
               >
-                {/* Signature Vector Golden Wave Curve */}
+                {/* Signature Vector Curve */}
                 <div className="home-category-wave feat-wave">
                   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-                    <path d="M0 0 C50 10, 90 40, 100 100 L100 0 Z" fill="#FF9900" opacity="0.30" />
-                    <path d="M20 0 C65 15, 95 50, 100 85 L100 0 Z" fill="#FFA800" opacity="0.55" />
+                    <path d="M0 0 C50 10, 90 40, 100 100 L100 0 Z" fill="#FF4500" opacity="0.15" />
+                    <path d="M20 0 C65 15, 95 50, 100 85 L100 0 Z" fill="#E62E00" opacity="0.30" />
                   </svg>
                 </div>
 
@@ -717,7 +717,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <strong style={{ display: 'block', fontSize: 14, color: '#000000', lineHeight: 1.2 }}>{rev.name}</strong>
-                      <span style={{ fontSize: 11, color: '#334155', fontWeight: 600 }}>{rev.location || 'Pune'} • {rev.carName || 'Self Drive'}</span>
+                      <span style={{ fontSize: 11, color: '#334155', fontWeight: 600 }}>{rev.location || 'Pune'} • {rev.carName || 'Travel Fleet'}</span>
                     </div>
                   </div>
                 </div>

@@ -25,7 +25,7 @@ function getDirectInstagramUrl(urlOrHandle, message = '') {
 
 export default function InstagramButton() {
   const { settings } = useTenant();
-  const bizName = settings?.businessName || "Jay Kedar Car Rental";
+  const bizName = settings?.businessName || "Jay Kedarnath Tours & Travels";
   const instagramUrl = getDirectInstagramUrl(settings?.instagram);
 
   return (

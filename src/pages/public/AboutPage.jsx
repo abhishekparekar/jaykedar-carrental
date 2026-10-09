@@ -86,12 +86,12 @@ export default function AboutPage() {
         <div style={{ background: '#FFFFFF', borderBottom: '1px solid #E2E8F0', marginBottom: 32 }}>
           <div className="container" style={{ padding: '36px 16px 30px' }}>
             <span className="section-label-red" style={{ marginBottom: 10, display: 'inline-block' }}>
-              About {settings?.businessName || "Jay Kedar Car Rental"}
+              About {settings?.businessName || "Jay Kedarnath Tours & Travels"}
             </span>
             <h1 style={{ fontSize: 'clamp(24px, 4.5vw, 38px)', fontWeight: 900, color: '#111318', margin: '0 0 10px', lineHeight: 1.25 }}>
               {settings?.aboutTitle ? (
                 <span style={{
-                  background: 'linear-gradient(135deg, #111318 0%, #FF4500 50%, #FFD700 100%)',
+                  background: 'linear-gradient(135deg, #0B2545 0%, #FF4B1F 50%, #E62E00 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -100,14 +100,14 @@ export default function AboutPage() {
                 </span>
               ) : (
                 <>
-                  <span style={{ color: '#111318' }}>Reinventing</span>{' '}
+                  <span style={{ color: '#111318' }}>About</span>{' '}
                   <span style={{
-                    background: 'linear-gradient(90deg, #FF4500 0%, #FFA500 55%, #FFD700 100%)',
+                    background: 'linear-gradient(90deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
                     fontWeight: 900,
-                  }}>Jay Kedar Car Rental</span>
+                  }}>Jay Kedarnath Tours & Travels</span>
                 </>
               )}
             </h1>
@@ -176,7 +176,7 @@ export default function AboutPage() {
             </div>
 
             <h2 style={{ fontSize: 'clamp(20px, 3.5vw, 28px)', fontWeight: 900, color: '#111318', marginBottom: 12, lineHeight: 1.25 }}>
-              {settings?.aboutMissionHeading || 'Empowering Renters with Complete Self-Drive Freedom'}
+              {settings?.aboutMissionHeading || 'Empowering Travelers with Seamless Tours & Travel Services'}
             </h2>
 
             <p style={{ fontSize: 'clamp(13.5px, 1.8vw, 15px)', color: '#475569', lineHeight: 1.7, marginBottom: 14, maxWidth: 850 }}>
@@ -342,7 +342,7 @@ export default function AboutPage() {
                       </div>
                       <div>
                         <strong style={{ fontSize: 13, color: '#000000', display: 'block', lineHeight: 1.2 }}>{rev.name}</strong>
-                        <span style={{ fontSize: 11, color: '#334155', fontWeight: 600 }}>{rev.location || 'Pune'} • {rev.carName || 'Self Drive'}</span>
+                        <span style={{ fontSize: 11, color: '#334155', fontWeight: 600 }}>{rev.location || 'Pune'} • {rev.carName || 'Travel Vehicle'}</span>
                       </div>
                     </div>
                   </div>

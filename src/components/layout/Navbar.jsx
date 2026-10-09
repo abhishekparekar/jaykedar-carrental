@@ -7,7 +7,7 @@ import {
 } from 'react-icons/fi';
 import { BsWhatsapp, BsInstagram } from 'react-icons/bs';
 
-import logoImg from '../../assets/Jaylogo1.png';
+import logoImg from '../../assets/Jaylogo2.png';
 import navbarBgImg from '../../assets/navbar_bg.png';
 import { useTenant } from '../../contexts/TenantContext';
 
@@ -58,7 +58,7 @@ export default function Navbar() {
           position: 'relative',
         }}>
 
-          {/* ── Logo Branding (Clean - No background box) ── */}
+          {/* ── Logo Branding (Crisp, High-Visibility Transparent Emblem) ── */}
           <Link
             to="/"
             onClick={handleLogoClick}
@@ -67,7 +67,7 @@ export default function Navbar() {
           >
             <img
               src={logoImg}
-              alt={settings?.businessName || "Jay Kedar Car Rental"}
+              alt="Jay Kedarnath Tours & Travels"
               loading="eager"
               decoding="async"
               fetchPriority="high"
@@ -90,9 +90,9 @@ export default function Navbar() {
                   fontSize: 14,
                   fontWeight: isActive ? 900 : 700,
                   color: isActive ? '#FFFFFF' : '#374151',
-                  background: isActive ? 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)' : 'transparent',
+                  background: isActive ? 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)' : 'transparent',
                   border: 'none',
-                  boxShadow: isActive ? '0 4px 14px rgba(255, 153, 0, 0.35)' : 'none',
+                  boxShadow: isActive ? '0 4px 14px rgba(230, 46, 0, 0.35)' : 'none',
                   transition: 'all 0.2s ease',
                   textDecoration: 'none',
                   display: 'flex',
@@ -113,7 +113,7 @@ export default function Navbar() {
                           right: '25%',
                           height: 3,
                           borderRadius: 2,
-                          background: 'linear-gradient(90deg, #FF9900 0%, #FFA800 100%)',
+                          background: 'linear-gradient(90deg, #FF4B1F 0%, #E62E00 100%)',
                         }}
                       />
                     )}
@@ -144,7 +144,7 @@ export default function Navbar() {
               }}
               className="desktop-nav"
             >
-              <FiPhone size={14} style={{ color: '#FF9900' }} />
+              <FiPhone size={14} style={{ color: '#FF4500' }} />
               <span>{phoneRaw}</span>
             </a>
 
@@ -157,9 +157,9 @@ export default function Navbar() {
                 fontSize: 14,
                 fontWeight: 800,
                 borderRadius: '9999px',
-                background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%)',
                 color: '#FFFFFF',
-                boxShadow: '0 6px 20px rgba(255, 153, 0, 0.40)',
+                boxShadow: '0 6px 20px rgba(230, 46, 0, 0.40)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 6,
@@ -178,12 +178,12 @@ export default function Navbar() {
                 width: 40,
                 height: 40,
                 borderRadius: '50%',
-                background: 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)',
+                background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
                 color: '#FFFFFF',
                 display: 'none',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 4px 14px rgba(255, 153, 0, 0.35)',
+                boxShadow: '0 4px 14px rgba(230, 46, 0, 0.35)',
                 textDecoration: 'none',
               }}
             >
@@ -200,8 +200,8 @@ export default function Navbar() {
                 width: 40,
                 height: 40,
                 borderRadius: 12,
-                background: menuOpen ? '#FF9900' : 'rgba(255, 255, 255, 0.92)',
-                border: menuOpen ? '1.5px solid #FF9900' : '1.5px solid rgba(255, 153, 0, 0.35)',
+                background: menuOpen ? 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)' : 'rgba(255, 255, 255, 0.95)',
+                border: menuOpen ? '1.5px solid #E62E00' : '1.5px solid rgba(230, 46, 0, 0.30)',
                 color: menuOpen ? '#FFFFFF' : '#111827',
                 display: 'none',
                 alignItems: 'center',
@@ -275,9 +275,9 @@ export default function Navbar() {
                 >
                   <img
                     src={logoImg}
-                    alt={settings?.businessName || "Jay Kedar Car Rental"}
+                    alt="Jay Kedarnath Tours & Travels"
                     className="navbar-brand-logo-img"
-                    style={{ height: 40, maxHeight: 40 }}
+                    style={{ height: 54, width: 54, maxHeight: 54, objectFit: 'contain' }}
                   />
                 </Link>
 
@@ -315,9 +315,9 @@ export default function Navbar() {
                       fontSize: 13.5,
                       fontWeight: isActive ? 900 : 700,
                       color: isActive ? '#FFFFFF' : '#111827',
-                      background: isActive ? 'linear-gradient(135deg, #FF9900 0%, #FFA800 100%)' : '#FFFFFF',
-                      border: isActive ? '1.5px solid #FF9900' : '1px solid #F1F5F9',
-                      boxShadow: isActive ? '0 3px 10px rgba(255, 153, 0, 0.30)' : 'none',
+                      background: isActive ? 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)' : '#FFFFFF',
+                      border: isActive ? '1.5px solid #E62E00' : '1px solid #F1F5F9',
+                      boxShadow: isActive ? '0 3px 10px rgba(230, 46, 0, 0.30)' : 'none',
                       textDecoration: 'none',
                       display: 'flex',
                       alignItems: 'center',
@@ -331,8 +331,8 @@ export default function Navbar() {
                             width: 26,
                             height: 26,
                             borderRadius: 8,
-                            background: isActive ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 153, 0, 0.10)',
-                            color: isActive ? '#FFFFFF' : '#FF9900',
+                            background: isActive ? 'rgba(255, 255, 255, 0.25)' : 'rgba(230, 46, 0, 0.10)',
+                            color: isActive ? '#FFFFFF' : '#FF4500',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -383,7 +383,7 @@ export default function Navbar() {
                 </a>
 
                 <a
-                  href={`https://wa.me/${(settings?.whatsapp || '918485877633').replace(/\D/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedar Car Rental")},%20I%20want%20to%20book%20a%20car.`}
+                  href={`https://wa.me/${(settings?.whatsapp || '918485877633').replace(/\D/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedarnath Tours & Travels")},%20I%20want%20to%20book%20a%20car.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -443,21 +443,23 @@ export default function Navbar() {
           align-items: center;
           text-decoration: none;
           flex-shrink: 0;
+          padding: 2px 0;
         }
         .navbar-brand-logo-img {
-          height: 48px;
-          max-height: 48px;
-          width: auto;
+          height: 60px;
+          width: 60px;
+          max-height: 60px;
           object-fit: contain;
           display: block;
-          filter: drop-shadow(0 1px 2px rgba(17, 24, 39, 0.35)) drop-shadow(0 0 1px rgba(17, 24, 39, 0.20));
-          transition: transform 0.2s ease;
+          image-rendering: -webkit-optimize-contrast;
+          filter: drop-shadow(0 2px 8px rgba(15, 23, 42, 0.18));
+          transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .navbar-brand-link:hover .navbar-brand-logo-img {
-          transform: scale(1.03);
+          transform: scale(1.08);
         }
         .navbar-inner-bar {
-          height: 60px !important;
+          height: 70px !important;
         }
 
         @media (max-width: 980px) {
@@ -471,23 +473,32 @@ export default function Navbar() {
             margin-left: 0 !important;
           }
           .navbar-brand-logo-img {
-            height: 42px !important;
-            max-height: 42px !important;
+            height: 52px !important;
+            width: 52px !important;
+            max-height: 52px !important;
+          }
+          .navbar-inner-bar {
+            height: 64px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .navbar-brand-logo-img {
+            height: 48px !important;
+            width: 48px !important;
+            max-height: 48px !important;
+          }
+          .navbar-inner-bar {
+            height: 60px !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .navbar-brand-logo-img {
+            height: 44px !important;
+            width: 44px !important;
+            max-height: 44px !important;
           }
           .navbar-inner-bar {
             height: 56px !important;
-          }
-        }
-        @media (max-width: 400px) {
-          .navbar-brand-link {
-            margin-left: 0 !important;
-          }
-          .navbar-brand-logo-img {
-            height: 38px !important;
-            max-height: 38px !important;
-          }
-          .navbar-inner-bar {
-            height: 52px !important;
           }
         }
       `}</style>

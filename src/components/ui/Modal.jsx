@@ -56,8 +56,8 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 540
               padding: '24px 28px',
               background: '#FFFFFF',
               borderRadius: 28,
-              border: '1.5px solid rgba(255, 153, 0, 0.35)',
-              boxShadow: '0 25px 80px rgba(11, 15, 25, 0.40), 0 0 40px rgba(255, 153, 0, 0.18)',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 25px 80px rgba(11, 15, 25, 0.40), 0 0 40px rgba(230, 46, 0, 0.15)',
             }}
           >
             {/* Top Glowing Accent Line */}
@@ -67,7 +67,7 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 540
               height: 4,
               borderTopLeftRadius: 28,
               borderTopRightRadius: 28,
-              background: 'linear-gradient(90deg, #FF9900 0%, #FFA800 50%, #FFB800 100%)',
+              background: 'linear-gradient(90deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%)',
             }} />
 
             {/* Header */}
@@ -99,7 +99,7 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 540
                   transition: 'all 0.2s ease',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.background = '#FF9900';
+                  e.currentTarget.style.background = '#FF4500';
                   e.currentTarget.style.color = '#FFFFFF';
                 }}
                 onMouseLeave={e => {

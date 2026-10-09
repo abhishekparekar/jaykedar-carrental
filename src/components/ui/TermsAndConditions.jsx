@@ -90,7 +90,7 @@ export default function TermsAndConditions({ expandable = false, defaultOpen = t
           </div>
           <div>
             <span style={{ fontSize: 10, color: '#FF4500', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.8px', display: 'block', marginBottom: 2 }}>
-              JAY KEDAR CAR RENTAL • OFFICIAL POLICY
+              JAY KEDARNATH TOURS &amp; TRAVELS • OFFICIAL POLICY
             </span>
             <h4 style={{ fontSize: compact ? 14 : 16, fontWeight: 900, color: '#111318', margin: 0, lineHeight: 1.25 }}>
               Rental Policy &amp; Mandatory Documents

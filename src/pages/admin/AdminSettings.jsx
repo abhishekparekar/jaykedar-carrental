@@ -55,8 +55,8 @@ export default function AdminSettings() {
   useEffect(() => {
     if (settings) {
       setForm({
-        businessName: settings.businessName || "Jay Kedar Car Rental",
-        tagline: settings.tagline || 'Premium self-drive car rentals with 300 km daily limit, doorstep delivery & verified fleet.',
+        businessName: settings.businessName || "Jay Kedarnath Tours & Travels",
+        tagline: settings.tagline || 'Premium cab and vehicle rentals for outstation trips, local journeys, and tour packages with 24/7 doorstep pickup.',
         phone: settings.phone || '+91 8485877633',
         email: settings.email || 'abhiparekar58@gmail.com',
         address: settings.address || 'Pimpri-Chinchwad & Pune City, Maharashtra',
@@ -67,9 +67,9 @@ export default function AdminSettings() {
         twitter: settings.twitter || 'https://twitter.com',
         youtube: settings.youtube || 'https://youtube.com',
         // About Page Defaults
-        aboutTitle: settings.aboutTitle || 'Reinventing Jay Kedar Car Rental',
-        aboutSubtitle: settings.aboutSubtitle || 'Driven by 100% transparency, verified cars, 300 km daily limit, and 30-minute doorstep delivery in Pune.',
-        aboutMissionHeading: settings.aboutMissionHeading || 'Empowering Renters with Complete Self-Drive Freedom',
+        aboutTitle: settings.aboutTitle || 'About Jay Kedarnath Tours & Travels',
+        aboutSubtitle: settings.aboutSubtitle || 'Driven by 100% transparency, verified vehicles, prompt service, and doorstep pickup across Pune & Maharashtra.',
+        aboutMissionHeading: settings.aboutMissionHeading || 'Empowering Travelers with Seamless Tours & Travel Services',
         aboutMissionText: settings.aboutMissionText || 'We believe having a car for weekend family trips, business meetings, or hill-station drives should be simple — accessible on demand without ownership hassle.',
         aboutStoryText: settings.aboutStoryText || 'Every vehicle in our fleet is deep-sanitized, digitally verified, and handed over with complete document verification.',
         statsRenters: settings.statsRenters || '500+',
@@ -201,7 +201,7 @@ export default function AdminSettings() {
                     className="form-input"
                     value={form.businessName}
                     onChange={e => setForm({ ...form, businessName: e.target.value })}
-                    placeholder="Jay Kedar Car Rental"
+                    placeholder="Jay Kedarnath Tours & Travels"
                   />
                 </div>
 
@@ -288,7 +288,7 @@ export default function AdminSettings() {
                     className="form-input"
                     value={form.aboutTitle}
                     onChange={e => setForm({ ...form, aboutTitle: e.target.value })}
-                    placeholder="Reinventing Jay Kedar Car Rental"
+                    placeholder="About Jay Kedarnath Tours & Travels"
                   />
                 </div>
 

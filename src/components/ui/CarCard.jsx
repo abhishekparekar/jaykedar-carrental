@@ -94,17 +94,17 @@ export default function CarCard({ car, onEnquire }) {
         {/* Specs Bar in Proper Dark Color */}
         <div className="vk-card-specs">
           <div className="vk-spec-item">
-            <BsCarFront size={12} color="#FF9900" />
+            <BsCarFront size={12} color="#FF4500" />
             <span>{categoryName}</span>
           </div>
 
           <div className="vk-spec-item">
-            <FiSettings size={12} color="#FF9900" />
+            <FiSettings size={12} color="#FF4500" />
             <span style={{ textTransform: 'capitalize' }}>{car.transmission || 'Manual'}</span>
           </div>
 
           <div className="vk-spec-item">
-            <FiUsers size={12} color="#FF9900" />
+            <FiUsers size={12} color="#FF4500" />
             <span>{seatsNum} seats</span>
           </div>
         </div>

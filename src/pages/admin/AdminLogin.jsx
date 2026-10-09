@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiLock, FiMail, FiLogIn, FiAlertCircle, FiEye, FiEyeOff } from 'react-icons/fi';
 import { useAuth } from '../../contexts/AuthContext';
-import logoImg from '../../assets/Jaylogo1.png';
+import logoImg from '../../assets/Jaylogo2.png';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -63,16 +63,18 @@ export default function AdminLogin() {
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <img
             src={logoImg}
-            alt="Jay Kedar Car Rental"
+            alt="Jay Kedarnath Tours & Travels"
             style={{
-              height: 72,
-              width: 'auto',
+              height: 76,
+              width: 76,
+              maxHeight: 76,
+              objectFit: 'contain',
               margin: '0 auto 14px',
               display: 'block',
-              filter: 'drop-shadow(0 6px 18px rgba(255, 69, 0, 0.42))',
+              filter: 'drop-shadow(0 4px 14px rgba(230, 46, 0, 0.40))',
             }}
           />
-          <h2 style={{ fontSize: 20, fontWeight: 800, margin: '0 0 4px', color: '#111318' }}>Jay Kedar Car Rental Admin Portal</h2>
+          <h2 style={{ fontSize: 20, fontWeight: 800, margin: '0 0 4px', color: '#111318' }}>Jay Kedarnath Tours & Travels Admin Portal</h2>
           <p style={{ fontSize: 12, color: '#6B7080', margin: 0 }}>
             Authorized Admin Access Only
           </p>
@@ -178,7 +180,14 @@ export default function AdminLogin() {
             type="submit"
             disabled={loading}
             className="btn btn-primary btn-lg w-full"
-            style={{ marginTop: 4, background: '#FF4500', borderColor: '#FF4500', fontWeight: 800 }}
+            style={{
+              marginTop: 4,
+              background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%)',
+              border: 'none',
+              boxShadow: '0 6px 20px rgba(230, 46, 0, 0.40)',
+              fontWeight: 800,
+              color: '#FFFFFF',
+            }}
           >
             {loading ? 'Authenticating Role...' : 'Sign In to CRM'} <FiLogIn />
           </button>

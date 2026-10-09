@@ -446,8 +446,8 @@ export async function registerAdminUser(tenantId, uid, { email, name, role = 'ad
 
 // ─── Tenant Settings & Dynamic Footer Configuration ───────────────────────────
 export const DEFAULT_TENANT_SETTINGS = {
-  businessName: "Jay Kedar Car Rental",
-  tagline: 'Premium self-drive car rentals with 300 km daily limit, doorstep delivery & verified fleet.',
+  businessName: "Jay Kedarnath Tours & Travels",
+  tagline: 'Premium cab and vehicle rentals for outstation trips, local journeys, and tour packages with 24/7 doorstep pickup.',
   phone: '+91 8485877633',
   email: 'abhiparekar58@gmail.com',
   address: 'Pune, Maharashtra',
@@ -458,9 +458,9 @@ export const DEFAULT_TENANT_SETTINGS = {
   youtube: 'https://youtube.com',
   accentColor: '#FF6B00',
   // About Page Dynamic Settings
-  aboutTitle: 'Reinventing Jay Kedar Car Rental',
-  aboutSubtitle: 'Driven by 100% transparency, verified cars, 300 km daily limit, and 30-minute doorstep delivery in Pune.',
-  aboutMissionHeading: 'Empowering Renters with Complete Self-Drive Freedom',
+  aboutTitle: 'About Jay Kedarnath Tours & Travels',
+  aboutSubtitle: 'Driven by 100% transparency, verified vehicles, prompt service, and doorstep pickup across Pune & Maharashtra.',
+  aboutMissionHeading: 'Empowering Travelers with Seamless Tours & Travel Services',
   aboutMissionText: 'We believe having a car for weekend family trips, business meetings, or hill-station drives should be simple — accessible on demand without ownership hassle.',
   aboutStoryText: 'Every vehicle in our fleet is deep-sanitized, digitally verified, and handed over with complete document verification.',
   statsRenters: '500+',
@@ -548,7 +548,7 @@ export const INITIAL_REVIEWS = [
   {
     author: 'Rahul Deshmukh',
     rating: 5,
-    comment: 'Super clean Ertiga delivered right at my door in Baner. Smooth self-drive experience for our Mahabaleshwar trip! Highly recommended.',
+    comment: 'Super clean Ertiga picked up right on time in Baner. Smooth travel experience for our Mahabaleshwar trip! Highly recommended.',
     car: 'Maruti Ertiga VXI',
     date: 'March 2026',
     verified: true
@@ -556,7 +556,7 @@ export const INITIAL_REVIEWS = [
   {
     author: 'Priya Sharma',
     rating: 5,
-    comment: 'Booked Swift for 3 days. Very transparent pricing, 300 km/day was more than enough, and zero hidden charges at security return.',
+    comment: 'Booked Swift for 3 days. Very transparent pricing, punctual pickup, and polite team with zero hidden charges.',
     car: 'Maruti Swift VXI',
     date: 'February 2026',
     verified: true
@@ -564,7 +564,7 @@ export const INITIAL_REVIEWS = [
   {
     author: 'Amit Patil',
     rating: 5,
-    comment: 'Best self-drive car rental in Pune! Thar was in pristine condition. Fast verification process and polite team.',
+    comment: 'Best tours & travels service in Pune! Thar was in pristine condition. Fast verification process and polite team.',
     car: 'Mahindra Thar 4x2',
     date: 'January 2026',
     verified: true

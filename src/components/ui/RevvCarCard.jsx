@@ -188,13 +188,13 @@ export default function RevvCarCard({ car, onEnquire }) {
           top: 10px;
           left: 10px;
           z-index: 2;
-          background: linear-gradient(135deg, #FF9900 0%, #FFA800 100%);
+          background: linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%);
           color: #FFFFFF;
           font-size: 10px;
           font-weight: 900;
           padding: 4px 10px;
           border-radius: 4px;
-          box-shadow: 0 4px 14px rgba(255, 153, 0, 0.40);
+          box-shadow: 0 4px 14px rgba(230, 46, 0, 0.40);
           letter-spacing: 0.5px;
         }
         .vk-card-badge-km {
@@ -233,13 +233,13 @@ export default function RevvCarCard({ car, onEnquire }) {
         }
         .vk-card-category-tag {
           font-size: 9.5px;
-          color: #FF9900;
+          color: #FF4500;
           font-weight: 900;
           letter-spacing: 0.6px;
-          background: rgba(255, 153, 0, 0.08);
+          background: rgba(230, 46, 0, 0.08);
           padding: 2px 7px;
           border-radius: 6px;
-          border: 1px solid rgba(255, 153, 0, 0.2);
+          border: 1px solid rgba(230, 46, 0, 0.2);
           white-space: nowrap;
         }
         .vk-card-title {
@@ -293,7 +293,7 @@ export default function RevvCarCard({ car, onEnquire }) {
         .vk-card-price {
           font-size: 18px;
           font-weight: 900;
-          color: #FF9900;
+          color: #FF4500;
           display: block;
           line-height: 1;
         }
@@ -309,8 +309,8 @@ export default function RevvCarCard({ car, onEnquire }) {
           font-size: 12px;
           font-weight: 900;
           border-radius: 999px;
-          background: linear-gradient(135deg, #FF9900 0%, #FFA800 100%);
-          box-shadow: 0 4px 14px rgba(255, 153, 0, 0.35);
+          background: linear-gradient(135deg, #FF4B1F 0%, #E62E00 50%, #C41C00 100%);
+          box-shadow: 0 4px 14px rgba(230, 46, 0, 0.35);
           color: #FFFFFF;
           display: inline-flex;
           align-items: center;
@@ -321,7 +321,8 @@ export default function RevvCarCard({ car, onEnquire }) {
         }
         .vk-inquire-btn:hover {
           transform: translateX(2px);
-          box-shadow: 0 6px 18px rgba(255, 153, 0, 0.50);
+          background: linear-gradient(135deg, #FF5E36 0%, #FF3D12 100%);
+          box-shadow: 0 6px 18px rgba(230, 46, 0, 0.50);
         }
 
         @media (max-width: 640px) {

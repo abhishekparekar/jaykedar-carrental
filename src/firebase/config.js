@@ -1,4 +1,4 @@
-// Firebase Configuration — Jay Kedar Car Rental
+// Firebase Configuration — Jay Kedarnath Tours & Travels
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';

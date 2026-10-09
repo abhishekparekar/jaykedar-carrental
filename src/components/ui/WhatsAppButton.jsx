@@ -6,7 +6,7 @@ export default function WhatsAppButton() {
   const { settings } = useTenant();
   const rawNum = settings?.whatsapp || settings?.phone || '918485877633';
   const phoneNumber = rawNum.replace(/\D/g, '');
-  const bizName = settings?.businessName || "Jay Kedar Car Rental";
+  const bizName = settings?.businessName || "Jay Kedarnath Tours & Travels";
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
 
   return (
