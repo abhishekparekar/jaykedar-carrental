@@ -30,7 +30,7 @@ import { formatCurrency } from '../../utils/formatCurrency';
 
 export default function CarDetailPage() {
   const { carId } = useParams();
-  const { tenantId } = useTenant();
+  const { tenantId, settings } = useTenant();
   const navigate = useNavigate();
 
   const [car, setCar] = useState(null);
@@ -90,7 +90,7 @@ export default function CarDetailPage() {
 
   const images = car.images && car.images.length > 0
     ? car.images
-    : ['https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80'];
+    : ['/force-traveller.jpg'];
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#F8FAFC' }}>
@@ -205,8 +205,11 @@ export default function CarDetailPage() {
               {/* Title & Status Badges */}
               <div style={{ marginBottom: 22 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
-                  <span className="badge badge-accent" style={{ background: '#FF4500', color: '#FFFFFF', fontWeight: 900, fontSize: 11, padding: '4px 10px', borderRadius: 99 }}>
-                    {(car.category || 'FLEET').toUpperCase()}
+                  <span className="badge badge-accent" style={{ background: '#FF4500', color: '#FFFFFF', fontWeight: 900, fontSize: 11.5, padding: '4px 12px', borderRadius: 99 }}>
+                    🚐 {car.busModel || 'Force Traveller'}
+                  </span>
+                  <span className="badge" style={{ background: '#0F172A', color: '#FFFFFF', fontWeight: 800, fontSize: 11, padding: '4px 10px', borderRadius: 99 }}>
+                    {(car.category || 'BUS').toUpperCase()}
                   </span>
                   {car.rating && (
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: '#D97706', fontSize: 11.5, fontWeight: 900, background: '#FEF3C7', padding: '3px 10px', borderRadius: 99 }}>
@@ -222,7 +225,7 @@ export default function CarDetailPage() {
                   {car.name}
                 </h1>
                 <p style={{ fontSize: 14, color: '#334155', margin: 0, lineHeight: 1.6, fontWeight: 600 }}>
-                  {car.description || 'Sanitized self-drive rental vehicle with 300 km daily limit & 24/7 doorstep delivery in Pune.'}
+                  {car.description || 'Premium clean travels and tour package service with experienced driver, AC seating, and punctual service.'}
                 </p>
               </div>
 
@@ -236,41 +239,41 @@ export default function CarDetailPage() {
                 boxShadow: '0 6px 24px rgba(15, 23, 42, 0.05)',
               }}>
                 <h3 style={{ fontSize: 15, marginBottom: 14, color: '#000000', fontWeight: 900 }}>
-                  Vehicle Specifications
+                  Fleet & Tour Specifications
                 </h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(115px, 1fr))', gap: 10 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 10 }}>
                   <div style={{ padding: '10px 12px', background: '#F8FAFC', borderRadius: 12, border: '1px solid #E2E8F0' }}>
-                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>Transmission</span>
+                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>Seating (Shita)</span>
+                    <strong style={{ fontSize: 13, color: '#000000', display: 'flex', alignItems: 'center', gap: 5, marginTop: 3, fontWeight: 900 }}>
+                      <FiUsers style={{ color: '#FF4500', flexShrink: 0 }} size={13} /> {car.seats || 17} Seats
+                    </strong>
+                  </div>
+
+                  <div style={{ padding: '10px 12px', background: '#F8FAFC', borderRadius: 12, border: '1px solid #E2E8F0' }}>
+                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>AC Type</span>
                     <strong style={{ fontSize: 13, color: '#000000', textTransform: 'capitalize', display: 'flex', alignItems: 'center', gap: 5, marginTop: 3, fontWeight: 900 }}>
-                      <FiSettings style={{ color: '#FF4500', flexShrink: 0 }} size={13} /> {car.transmission || 'Manual'}
+                      <FiCheckCircle style={{ color: '#FF4500', flexShrink: 0 }} size={13} /> {car.acType === 'non_ac' ? 'Non-AC' : car.acType === 'both' ? 'AC / Non-AC' : 'AC'}
                     </strong>
                   </div>
 
                   <div style={{ padding: '10px 12px', background: '#F8FAFC', borderRadius: 12, border: '1px solid #E2E8F0' }}>
-                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>Fuel Type</span>
-                    <strong style={{ fontSize: 13, color: '#000000', textTransform: 'capitalize', display: 'flex', alignItems: 'center', gap: 5, marginTop: 3, fontWeight: 900 }}>
-                      <BsFuelPump style={{ color: '#FF4500', flexShrink: 0 }} size={13} /> {car.fuelType || 'Petrol'}
+                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>Rate Per KM</span>
+                    <strong style={{ fontSize: 13, color: '#16A34A', display: 'flex', alignItems: 'center', gap: 5, marginTop: 3, fontWeight: 900 }}>
+                      ₹{car.perKmRate || car.extraKmRate || 25} / km
                     </strong>
                   </div>
 
                   <div style={{ padding: '10px 12px', background: '#F8FAFC', borderRadius: 12, border: '1px solid #E2E8F0' }}>
-                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>Seating</span>
+                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>Included KM</span>
                     <strong style={{ fontSize: 13, color: '#000000', display: 'flex', alignItems: 'center', gap: 5, marginTop: 3, fontWeight: 900 }}>
-                      <FiUsers style={{ color: '#FF4500', flexShrink: 0 }} size={13} /> {car.seats || 5} Seats
+                      {car.includedKm || 'Custom Trip'}
                     </strong>
                   </div>
 
                   <div style={{ padding: '10px 12px', background: '#F8FAFC', borderRadius: 12, border: '1px solid #E2E8F0' }}>
-                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>Mileage</span>
-                    <strong style={{ fontSize: 13, color: '#000000', display: 'flex', alignItems: 'center', gap: 5, marginTop: 3, fontWeight: 900 }}>
-                      <FiZap style={{ color: '#FF4500', flexShrink: 0 }} size={13} /> {car.mileage || '18 kmpl'}
-                    </strong>
-                  </div>
-
-                  <div style={{ padding: '10px 12px', background: '#F8FAFC', borderRadius: 12, border: '1px solid #E2E8F0' }}>
-                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>Luggage</span>
-                    <strong style={{ fontSize: 13, color: '#000000', display: 'flex', alignItems: 'center', gap: 5, marginTop: 3, fontWeight: 900 }}>
-                      <BsLuggage style={{ color: '#FF4500', flexShrink: 0 }} size={13} /> {car.luggageCapacity || '2 Bags'}
+                    <span style={{ fontSize: 10.5, color: '#64748B', textTransform: 'uppercase', fontWeight: 900 }}>Extra KM Rate</span>
+                    <strong style={{ fontSize: 13, color: '#D97706', display: 'flex', alignItems: 'center', gap: 5, marginTop: 3, fontWeight: 900 }}>
+                      ₹{car.extraKmRate || car.perKmRate || 25} / km
                     </strong>
                   </div>
                 </div>
@@ -285,30 +288,32 @@ export default function CarDetailPage() {
                 border: '1.5px solid #E2E8F0',
                 boxShadow: '0 6px 24px rgba(15, 23, 42, 0.05)',
               }}>
-                <h3 style={{ fontSize: 15, marginBottom: 14, color: '#000000', fontWeight: 900 }}>Pricing Tariff & Extra Rates</h3>
+                <h3 style={{ fontSize: 15, marginBottom: 14, color: '#000000', fontWeight: 900 }}>Tour Package Tariff & Rates</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 10 }}>
                   <div style={{ padding: 12, borderRadius: 12, background: 'linear-gradient(135deg, rgba(255, 69, 0, 0.09) 0%, #FFFFFF 100%)', border: '1px solid rgba(255, 69, 0, 0.28)' }}>
-                    <span style={{ fontSize: 11, color: '#FF4500', fontWeight: 900 }}>Daily Package (24h)</span>
-                    <h4 style={{ fontSize: 18, margin: '3px 0 0', color: '#FF4500', fontWeight: 900 }}>{formatCurrency(car.pricePerDay || 2300)} / day</h4>
+                    <span style={{ fontSize: 11, color: '#FF4500', fontWeight: 900 }}>Package / Base Rate</span>
+                    <h4 style={{ fontSize: 18, margin: '3px 0 0', color: '#FF4500', fontWeight: 900 }}>{formatCurrency(car.pricePerDay || 0)}</h4>
+                  </div>
+
+                  <div style={{ padding: 12, borderRadius: 12, background: '#F8FAFC', border: '1px solid #E2E8F0' }}>
+                    <span style={{ fontSize: 11, color: '#000000', fontWeight: 800, opacity: 0.8 }}>Distance Rate</span>
+                    <h4 style={{ fontSize: 16, margin: '3px 0 0', color: '#16A34A', fontWeight: 900 }}>
+                      ₹{car.perKmRate || car.extraKmRate || 25} / km
+                    </h4>
+                  </div>
+
+                  <div style={{ padding: 12, borderRadius: 12, background: '#F8FAFC', border: '1px solid #E2E8F0' }}>
+                    <span style={{ fontSize: 11, color: '#000000', fontWeight: 800, opacity: 0.8 }}>Included KM Limit</span>
+                    <h4 style={{ fontSize: 16, margin: '3px 0 0', color: '#000000', fontWeight: 900 }}>
+                      {car.includedKm || 'As quoted'}
+                    </h4>
                   </div>
 
                   <div style={{ padding: 12, borderRadius: 12, background: '#F8FAFC', border: '1px solid #E2E8F0' }}>
                     <span style={{ fontSize: 11, color: '#000000', fontWeight: 800, opacity: 0.8 }}>Extra KM Charge</span>
-                    <h4 style={{ fontSize: 16, margin: '3px 0 0', color: '#000000', fontWeight: 900 }}>
-                      ₹{car.extraKmRate || (car.seats === 7 ? 7 : 6)} / km
+                    <h4 style={{ fontSize: 16, margin: '3px 0 0', color: '#D97706', fontWeight: 900 }}>
+                      ₹{car.extraKmRate || car.perKmRate || 25} / km
                     </h4>
-                  </div>
-
-                  <div style={{ padding: 12, borderRadius: 12, background: '#F8FAFC', border: '1px solid #E2E8F0' }}>
-                    <span style={{ fontSize: 11, color: '#000000', fontWeight: 800, opacity: 0.8 }}>Extra Time Charge</span>
-                    <h4 style={{ fontSize: 16, margin: '3px 0 0', color: '#000000', fontWeight: 900 }}>
-                      ₹{car.extraTimeRate || (car.name?.toLowerCase().includes('thar') ? 300 : 200)} / hr
-                    </h4>
-                  </div>
-
-                  <div style={{ padding: 12, borderRadius: 12, background: '#F8FAFC', border: '1px solid #E2E8F0' }}>
-                    <span style={{ fontSize: 11, color: '#000000', fontWeight: 800, opacity: 0.8 }}>Refundable Deposit</span>
-                    <h4 style={{ fontSize: 16, margin: '3px 0 0', color: '#000000', fontWeight: 900 }}>{formatCurrency(car.securityDeposit || 2000)}</h4>
                   </div>
                 </div>
               </div>
@@ -330,13 +335,15 @@ export default function CarDetailPage() {
               }}>
                 <div>
                   <span style={{ fontSize: 11, color: '#000000', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.8px', opacity: 0.7 }}>
-                    Daily Rental Rate
+                    Package / Base Rate
                   </span>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 4 }}>
                     <span style={{ fontSize: 28, fontWeight: 900, color: '#FF4500', lineHeight: 1 }}>
-                      {formatCurrency(car.pricePerDay || 2300)}
+                      {formatCurrency(car.pricePerDay || 0)}
                     </span>
-                    <span style={{ fontSize: 13, color: '#000000', fontWeight: 700, opacity: 0.8 }}>/ day</span>
+                    <span style={{ fontSize: 13, color: '#000000', fontWeight: 700, opacity: 0.8 }}>
+                      {car.includedKm ? `(${car.includedKm})` : ''}
+                    </span>
                   </div>
                 </div>
 
@@ -351,16 +358,16 @@ export default function CarDetailPage() {
                   border: '1px solid #E2E8F0',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12.5, color: '#000000', fontWeight: 800 }}>
-                    <FiTruck style={{ color: '#FF4500', flexShrink: 0 }} size={15} />
-                    <span>Doorstep Delivery in 30 Mins</span>
+                    <FiUsers style={{ color: '#FF4500', flexShrink: 0 }} size={15} />
+                    <span>{car.seats || 17} Passenger Seating ({car.acType === 'non_ac' ? 'Non-AC' : 'AC'})</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12.5, color: '#000000', fontWeight: 800 }}>
-                    <FiKey style={{ color: '#FF4500', flexShrink: 0 }} size={15} />
-                    <span>300 KM Daily Limit Included</span>
+                    <FiCheckCircle style={{ color: '#FF4500', flexShrink: 0 }} size={15} />
+                    <span>Experienced Tour & Outstation Driver</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12.5, color: '#000000', fontWeight: 800 }}>
                     <FiShield style={{ color: '#FF4500', flexShrink: 0 }} size={15} />
-                    <span>Full Insurance Coverage</span>
+                    <span>Punctual Service & Clean Interiors</span>
                   </div>
                 </div>
 
@@ -412,7 +419,7 @@ export default function CarDetailPage() {
                   </a>
 
                   <a
-                    href={`https://ig.me/m/founder_abhishek?text=Hi%20VK%20SELF%20DRIVE%20CAR%27S%20PUNE%2C%20I%20want%20to%20inquire%20about%20renting%20${encodeURIComponent(car.name)}%20(${encodeURIComponent(car.category || 'Self-Drive')})%20for%20${encodeURIComponent(formatCurrency(car.pricePerDay))}/day.%20Please%20confirm%20availability.`}
+                    href={`https://ig.me/m/founder_abhishek?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')}%2C%20I%20want%20to%20inquire%20about%20renting%20${encodeURIComponent(car.name)}%20(${encodeURIComponent(car.category || 'Self-Drive')})%20for%20${encodeURIComponent(formatCurrency(car.pricePerDay))}/day.%20Please%20confirm%20availability.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{

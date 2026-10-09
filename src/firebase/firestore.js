@@ -471,123 +471,76 @@ export const DEFAULT_TENANT_SETTINGS = {
 
 export const INITIAL_FLEET_CARS = [
   {
-    name: 'Ertiga VXI Petrol+CNG',
-    brand: 'Maruti Suzuki',
-    category: 'muv',
-    pricePerDay: 3200,
-    extraKmRate: 7,
-    extraTimeRate: 200,
-    seats: 7,
-    transmission: 'manual',
-    fuelType: 'cng',
-    securityDeposit: 3000,
+    name: 'Force Traveller - Lonavala Package (AC 17 Seater)',
+    busModel: 'Force Traveller',
+    brand: 'Force Motors',
+    category: 'bus',
+    seats: 17,
+    acType: 'ac',
+    pricePerDay: 9500,
+    perKmRate: 25,
+    includedKm: 'Lonavala Package',
+    extraKmRate: 25,
+    images: ['/force-traveller.jpg'],
+    description: 'Lonavala package AC 17 seat Rs 9500. Non-AC per km Rs 25 for 20 seats. Sanitized Force Traveller, push-back comfortable seating, expert hill-route driver.',
+    isActive: true,
     isPopular: true,
     rating: 4.9,
-    images: ['https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80'],
-    description: 'Spacious 7-seater Maruti Ertiga VXI with Dual Fuel Petrol+CNG efficiency. Perfect for family outings and hill-station drives.',
-    features: ['7 Seater', 'CNG + Petrol', '300 km/day Limit', 'AC & Music System', 'Luggage Carrier']
+    features: ['17 & 20 Seater Options', 'AC / Non-AC', 'Push-Back Seats', 'Lonavala Sightseeing', 'Driver Allowance']
   },
   {
-    name: 'Thar 4x2 Diesel',
-    brand: 'Mahindra',
-    category: 'suv',
-    pricePerDay: 5000,
-    extraKmRate: 7,
-    extraTimeRate: 300,
-    seats: 4,
-    transmission: 'manual',
-    fuelType: 'diesel',
-    securityDeposit: 5000,
+    name: 'Force Traveller - Mahabaleshwar Package (17 Seat AC Bus)',
+    busModel: 'Force Traveller',
+    brand: 'Force Motors',
+    category: 'bus',
+    seats: 17,
+    acType: 'ac',
+    pricePerDay: 11000,
+    perKmRate: 29,
+    includedKm: 'Mahabaleshwar Package',
+    extraKmRate: 29,
+    images: ['/force-traveller.jpg'],
+    description: 'Mahabaleshwar package includes 17 seat AC Force Traveller bus Rs 11,000. 20 Seater option available @ Rs 29/km. Chilled AC, sanitized interior, scenic tour specialist.',
+    isActive: true,
     isPopular: true,
     rating: 5.0,
-    images: ['https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=800&q=80'],
-    description: 'Iconic Mahindra Thar 4x2 RWD Diesel with massive road presence, commanding view, and raw power.',
-    features: ['4x2 RWD', 'Hard Top', 'Touchscreen Infotainment', 'Cruise Control', '300 km/day Limit']
+    features: ['17 Seat AC Luxury Bus', '20 Seat @ Rs 29/km', 'Panchgani & Mahabaleshwar', 'Push-Back Recliners', 'Music System']
   },
   {
-    name: 'Baleno Delta Petrol',
-    brand: 'Maruti Suzuki',
-    category: 'hatchback',
-    pricePerDay: 2300,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'petrol',
-    securityDeposit: 2000,
+    name: 'Force Traveller - Mumbai Package Non-AC (350 km)',
+    busModel: 'Force Traveller',
+    brand: 'Force Motors',
+    category: 'bus',
+    seats: 17,
+    acType: 'non_ac',
+    pricePerDay: 12000,
+    perKmRate: 27,
+    includedKm: '350 km (Purandar)',
+    extraKmRate: 25,
+    images: ['/force-traveller.jpg'],
+    description: '17 seat Non-AC Force Traveller Mumbai package (350 km Purandar) Rs 12,000. Extra km @ Rs 25/km, per km rate Rs 27/km. 17 seater capacity with clean spacious interior.',
+    isActive: true,
     isPopular: true,
     rating: 4.8,
-    images: ['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80'],
-    description: 'Smooth Maruti Baleno Delta Petrol hatchback for comfortable city rides and expressway long drives.',
-    features: ['5 Seater', 'SmartPlay Audio', 'Automatic Climate Control', 'Power Windows', 'High Mileage']
+    features: ['17 Seats (Shita)', '350 km Limit Included', 'Purandar to Mumbai', 'Extra km @ Rs 25', 'Spacious Luggage Boot']
   },
   {
-    name: 'Tata Nexon CNG',
-    brand: 'Tata',
-    category: 'suv',
-    pricePerDay: 2800,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'cng',
-    securityDeposit: 2500,
+    name: 'Force Traveller - Mumbai Package AC Luxury (350 km)',
+    busModel: 'Force Traveller',
+    brand: 'Force Motors',
+    category: 'bus',
+    seats: 17,
+    acType: 'ac',
+    pricePerDay: 15000,
+    perKmRate: 28,
+    includedKm: '350 km (Purandar)',
+    extraKmRate: 28,
+    images: ['/force-traveller.jpg'],
+    description: '17 seat AC Force Traveller Mumbai package (350 km Purandar) Rs 15,000. Extra km @ Rs 28/km. Luxury chilled AC bus, stereo audio, comfortable recliners for long travel.',
+    isActive: true,
     isPopular: true,
-    rating: 4.9,
-    images: ['https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80'],
-    description: '5-Star Safety Tata Nexon iCNG Compact SUV with twin-cylinder technology and usable boot space.',
-    features: ['5 Star Safety', 'Turbo iCNG', 'Digital Cluster', '350L Boot Space', '300 km/day Limit']
-  },
-  {
-    name: 'Swift VXI (O) Petrol',
-    brand: 'Maruti Suzuki',
-    category: 'hatchback',
-    pricePerDay: 2300,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'petrol',
-    securityDeposit: 2000,
-    isPopular: true,
-    rating: 4.8,
-    images: ['https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80'],
-    description: 'Popular Maruti Swift VXI Option Petrol with peppy DualJet engine and unmatched agility.',
-    features: ['Dual Airbags', 'Bluetooth Audio', 'ABS with EBD', '300 km/day Limit']
-  },
-  {
-    name: 'Venue S+ with Sunroof Petrol',
-    brand: 'Hyundai',
-    category: 'suv',
-    pricePerDay: 2800,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'petrol',
-    securityDeposit: 2500,
-    isPopular: true,
-    rating: 4.9,
-    images: ['https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80'],
-    description: 'Hyundai Venue S+ Petrol with Electric Sunroof, touchscreen, rear AC vents, and premium cabin feel.',
-    features: ['Electric Sunroof', '8-inch Touchscreen', 'Rear Camera', 'Cruise Control']
-  },
-  {
-    name: 'WagonR VXI CNG',
-    brand: 'Maruti Suzuki',
-    category: 'hatchback',
-    pricePerDay: 2000,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'cng',
-    securityDeposit: 2000,
-    isPopular: false,
-    rating: 4.7,
-    images: ['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80'],
-    description: 'Economical Maruti WagonR VXI Factory CNG with tall-boy stance and maximum fuel economy.',
-    features: ['High Fuel Economy', 'Tall Boy Seating', 'Front Power Windows', 'Spacious Legroom']
+    rating: 5.0,
+    features: ['17 Seater Chilled AC', '350 km Limit Included', 'Purandar / Pune to Mumbai', 'Extra km @ Rs 28', 'Push-Back Luxury Seats']
   }
 ];
 
@@ -666,32 +619,30 @@ export function formatTimestamp(ts) {
 // ─── Automatic Multi-Tenant Initialization ─────────────────────────────────────
 export async function ensureTenantInitialData(tenantId) {
   try {
-    // 1. Ensure Tenant Settings
+    // Ensure Tenant Settings if document does not exist yet
     const settingsSnap = await getDoc(tenantDoc(tenantId, 'settings', 'config'));
     if (!settingsSnap.exists()) {
       console.log(`[Multi-Tenant Firestore] Initializing default settings for tenant: ${tenantId}`);
-      await updateTenantSettings(tenantId, DEFAULT_TENANT_SETTINGS, 'system-init');
+      await updateTenantSettings(tenantId, {
+        ...DEFAULT_TENANT_SETTINGS,
+        isInitialized: true,
+      }, 'system-init');
     }
 
-    // 2. Ensure Initial Fleet if cars collection is empty
-    const carsSnap = await getDocs(query(tenantCollection(tenantId, 'cars'), limit(1)));
-    if (carsSnap.empty) {
-      console.log(`[Multi-Tenant Firestore] Seeding initial fleet for tenant: ${tenantId}`);
-      for (const car of INITIAL_FLEET_CARS) {
-        await addCar(tenantId, car, 'system-init');
-      }
-    }
-
-    // 3. Ensure Initial Reviews if reviews collection is empty
-    const reviewsSnap = await getDocs(query(tenantCollection(tenantId, 'reviews'), limit(1)));
-    if (reviewsSnap.empty) {
-      console.log(`[Multi-Tenant Firestore] Seeding initial reviews for tenant: ${tenantId}`);
-      for (const review of INITIAL_REVIEWS) {
-        await addReview(tenantId, review, 'system-init');
-      }
-    }
+    // NOTE: We intentionally DO NOT auto-seed cars or reviews here.
+    // If the admin deletes all cars/reviews, the collections MUST remain empty
+    // and must never automatically re-seed seed data on page reload.
   } catch (err) {
     console.warn('[Multi-Tenant Firestore] Tenant initial data check:', err.message);
+  }
+}
+
+/**
+ * Manually seed default fleet cars if the admin explicitly requests it.
+ */
+export async function seedDefaultFleet(tenantId, adminUid = null) {
+  for (const car of INITIAL_FLEET_CARS) {
+    await addCar(tenantId, car, adminUid || 'admin-seed');
   }
 }
 

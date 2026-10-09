@@ -17,147 +17,9 @@ import {
   addCar,
   updateCar,
   deleteCar,
+  seedDefaultFleet,
 } from '../../firebase/firestore';
 import { formatCurrency } from '../../utils/formatCurrency';
-
-// Preset templates tailored to client's exact business catalog
-const CLIENT_PRESETS = [
-  {
-    name: 'Ertiga VXI Petrol+CNG',
-    brand: 'Maruti',
-    category: 'muv',
-    pricePerDay: 3200,
-    extraKmRate: 7,
-    extraTimeRate: 200,
-    seats: 7,
-    transmission: 'manual',
-    fuelType: 'cng',
-    securityDeposit: 3000,
-    isPopular: true,
-    imagesText: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
-    description: 'Spacious 7-seater Maruti Ertiga VXI with Dual Fuel Petrol+CNG efficiency.',
-  },
-  {
-    name: 'Baleno Delta Petrol',
-    brand: 'Maruti',
-    category: 'hatchback',
-    pricePerDay: 2300,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'petrol',
-    securityDeposit: 2000,
-    isPopular: true,
-    imagesText: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
-    description: 'Smooth Maruti Baleno Delta Petrol hatchback for comfortable city & highway drives.',
-  },
-  {
-    name: 'Baleno Zeta CNG',
-    brand: 'Maruti',
-    category: 'hatchback',
-    pricePerDay: 2500,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'cng',
-    securityDeposit: 2000,
-    isPopular: true,
-    imagesText: 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80',
-    description: 'Top-spec Maruti Baleno Zeta Factory CNG with maximum fuel saving.',
-  },
-  {
-    name: 'Thar 4x2 Diesel',
-    brand: 'Mahindra',
-    category: 'suv',
-    pricePerDay: 5000,
-    extraKmRate: 7,
-    extraTimeRate: 300,
-    seats: 4,
-    transmission: 'manual',
-    fuelType: 'diesel',
-    securityDeposit: 5000,
-    isPopular: true,
-    imagesText: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=800&q=80',
-    description: 'Iconic Mahindra Thar 4x2 RWD Diesel with massive road presence.',
-  },
-  {
-    name: 'Swift VXI (O) Petrol',
-    brand: 'Maruti',
-    category: 'hatchback',
-    pricePerDay: 2300,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'petrol',
-    securityDeposit: 2000,
-    isPopular: true,
-    imagesText: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80',
-    description: 'Popular Maruti Swift VXI Option Petrol with peppy engine and agility.',
-  },
-  {
-    name: 'Tata Nexon CNG',
-    brand: 'Tata',
-    category: 'suv',
-    pricePerDay: 2800,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'cng',
-    securityDeposit: 2500,
-    isPopular: true,
-    imagesText: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
-    description: '5-Star Safety Tata Nexon iCNG Compact SUV with twin cylinder technology.',
-  },
-  {
-    name: 'WagonR VXI CNG',
-    brand: 'Maruti',
-    category: 'hatchback',
-    pricePerDay: 2000,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'cng',
-    securityDeposit: 2000,
-    isPopular: false,
-    imagesText: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
-    description: 'Economical Maruti WagonR VXI CNG with tall-boy stance and high mileage.',
-  },
-  {
-    name: 'Fronx Sigma Petrol',
-    brand: 'Maruti',
-    category: 'hatchback',
-    pricePerDay: 2600,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'petrol',
-    securityDeposit: 2500,
-    isPopular: true,
-    imagesText: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80',
-    description: 'Stylish Maruti Suzuki Fronx Sigma Crossover Petrol SUV.',
-  },
-  {
-    name: 'Venue S+ with Sunroof Petrol',
-    brand: 'Hyundai',
-    category: 'suv',
-    pricePerDay: 2800,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    seats: 5,
-    transmission: 'manual',
-    fuelType: 'petrol',
-    securityDeposit: 2500,
-    isPopular: true,
-    imagesText: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
-    description: 'Hyundai Venue S+ Petrol with Electric Sunroof and luxury features.',
-  },
-];
 
 export default function AdminCars() {
   const { tenantId } = useTenant();
@@ -178,31 +40,19 @@ export default function AdminCars() {
   };
 
   const initialFormState = {
-    name: '',
-    brand: '',
-    category: 'hatchback',
-    imagesText: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80',
-    transmission: 'manual',
-    fuelType: 'petrol',
-    seats: 5,
-    pricePerHour: 200,
-    pricePerDay: 2300,
-    extraKmRate: 6,
-    extraTimeRate: 200,
-    securityDeposit: 2000,
-    features: ['Air Conditioner', 'Bluetooth Music', 'ABS Brakes', 'Power Windows'],
-    citiesAvailable: ['Pune', 'Mumbai', 'Pimpri-Chinchwad'],
+    name: 'Force Traveller - Lonavala Package',
+    busModel: 'Force Traveller',
+    category: 'bus',
+    seats: 17,
+    acType: 'ac',
+    pricePerDay: 9500,
+    perKmRate: 25,
+    includedKm: 'Lonavala Package',
+    extraKmRate: 25,
+    description: '17 Seat AC Force Traveller Bus. Push-back seats, chilled AC, sanitized bus, professional tour driver.',
+    imagesText: '/force-traveller.jpg',
     isActive: true,
     isPopular: true,
-    rating: 4.8,
-    description: '',
-    registrationNo: '',
-    fastagId: '',
-    odometer: 25000,
-    operationalStatus: 'available',
-    insuranceExpiry: '',
-    pucExpiry: '',
-    nextServiceKm: 30000,
   };
 
   const [formData, setFormData] = useState(initialFormState);
@@ -225,28 +75,35 @@ export default function AdminCars() {
   const handleOpenEdit = (car) => {
     setEditingCar(car);
     setFormData({
-      ...car,
-      extraKmRate: car.extraKmRate || (car.seats === 7 ? 7 : 6),
-      extraTimeRate: car.extraTimeRate || (car.name?.toLowerCase().includes('thar') ? 300 : 200),
+      name: car.name || '',
+      busModel: car.busModel || 'Force Traveller',
+      category: car.category || 'bus',
+      seats: Number(car.seats) || 17,
+      acType: car.acType || 'ac',
+      pricePerDay: car.pricePerDay || 9500,
+      perKmRate: car.perKmRate || car.extraKmRate || 25,
+      includedKm: car.includedKm || '',
+      extraKmRate: car.extraKmRate || car.perKmRate || 25,
+      description: car.description || '',
+      imagesText: (car.images || ['/force-traveller.jpg']).join('\n'),
+      isActive: car.isActive !== false,
       isPopular: car.isPopular !== false,
-      imagesText: (car.images || []).join('\n'),
-      registrationNo: car.registrationNo || '',
-      fastagId: car.fastagId || '',
-      odometer: car.odometer || 25000,
-      operationalStatus: car.operationalStatus || 'available',
-      insuranceExpiry: car.insuranceExpiry || '',
-      pucExpiry: car.pucExpiry || '',
-      nextServiceKm: car.nextServiceKm || 30000,
     });
     setIsModalOpen(true);
   };
 
-  const handleApplyPreset = (preset) => {
-    setFormData({
-      ...initialFormState,
-      ...preset,
-    });
-    toast.success(`Loaded preset for ${preset.name}`);
+  const handleSeedForceFleet = async () => {
+    if (!window.confirm('Do you want to add the 4 Force Traveller packages (Lonavala, Mahabaleshwar, Mumbai Non-AC, Mumbai AC) into Firestore?')) return;
+    try {
+      setLoading(true);
+      await seedDefaultFleet(tenantId, user?.uid);
+      toast.success('Successfully added 4 Force Traveller packages to your fleet!');
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to add packages');
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Device File Upload Handler (Base64 Reader)
@@ -287,94 +144,14 @@ export default function AdminCars() {
     toast.success('Image removed');
   };
 
-  // Smart auto-suggest rules when admin types car model name
-  const handleNameChange = (val) => {
-    const lower = val.toLowerCase();
-    let autoBrand = formData.brand;
-    let autoCategory = formData.category;
-    let autoSeats = formData.seats;
-    let autoExtraKm = formData.extraKmRate;
-    let autoExtraTime = formData.extraTimeRate;
-    let autoPrice = formData.pricePerDay;
-
-    if (lower.includes('thar')) {
-      autoBrand = 'Mahindra';
-      autoCategory = 'suv';
-      autoSeats = 4;
-      autoExtraKm = 7;
-      autoExtraTime = 300;
-      autoPrice = 5000;
-    } else if (lower.includes('ertiga')) {
-      autoBrand = 'Maruti';
-      autoCategory = 'muv';
-      autoSeats = 7;
-      autoExtraKm = 7;
-      autoExtraTime = 200;
-      autoPrice = lower.includes('automatic') || lower.includes('at') ? 3000 : 2500;
-    } else if (lower.includes('swift')) {
-      autoBrand = 'Maruti';
-      autoCategory = 'hatchback';
-      autoSeats = 5;
-      autoExtraKm = 6;
-      autoExtraTime = 200;
-      autoPrice = 2300;
-    } else if (lower.includes('i20')) {
-      autoBrand = 'Hyundai';
-      autoCategory = 'hatchback';
-      autoSeats = 5;
-      autoExtraKm = 6;
-      autoExtraTime = 200;
-      autoPrice = 2300;
-    } else if (lower.includes('dzire')) {
-      autoBrand = 'Maruti';
-      autoCategory = 'sedan';
-      autoSeats = 5;
-      autoExtraKm = 6;
-      autoExtraTime = 200;
-      autoPrice = 2500;
-    } else if (lower.includes('punch')) {
-      autoBrand = 'Tata';
-      autoCategory = 'suv';
-      autoSeats = 5;
-      autoExtraKm = 6;
-      autoExtraTime = 200;
-      autoPrice = 2500;
-    } else if (lower.includes('venue')) {
-      autoBrand = 'Hyundai';
-      autoCategory = 'suv';
-      autoSeats = 5;
-      autoExtraKm = 6;
-      autoExtraTime = 200;
-      autoPrice = 3000;
-    } else if (lower.includes('baleno')) {
-      autoBrand = 'Maruti';
-      autoCategory = 'hatchback';
-      autoSeats = 5;
-      autoExtraKm = 6;
-      autoExtraTime = 200;
-      autoPrice = 2300;
-    }
-
-    setFormData(prev => ({
-      ...prev,
-      name: val,
-      brand: autoBrand,
-      category: autoCategory,
-      seats: autoSeats,
-      extraKmRate: autoExtraKm,
-      extraTimeRate: autoExtraTime,
-      pricePerDay: autoPrice,
-    }));
-  };
-
   const handleDelete = async (carId, name) => {
     if (!window.confirm(`Are you sure you want to delete ${name}?`)) return;
     try {
       await deleteCar(tenantId, carId);
-      toast.success('Car removed from fleet');
+      toast.success('Vehicle / Package removed from fleet');
     } catch (err) {
       console.error(err);
-      toast.error('Failed to delete car');
+      toast.error('Failed to delete item');
     }
   };
 
@@ -401,6 +178,10 @@ export default function AdminCars() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.name.trim()) {
+      toast.error('Please enter vehicle or package name');
+      return;
+    }
     setSubmitting(true);
 
     const imageUrls = formData.imagesText
@@ -408,48 +189,40 @@ export default function AdminCars() {
       .map(url => url.trim())
       .filter(Boolean);
 
-    const seatsNum = Number(formData.seats);
+    const seatsNum = Number(formData.seats) || 17;
+    const priceNum = Number(formData.pricePerDay) || 0;
+    const perKmNum = Number(formData.perKmRate) || 0;
+    const extraKmNum = Number(formData.extraKmRate) || perKmNum || 25;
 
     const carDataPayload = {
-      name: formData.name,
-      brand: formData.brand,
-      category: formData.category,
-      images: imageUrls.length > 0 ? imageUrls : [initialFormState.imagesText],
-      transmission: formData.transmission,
-      fuelType: formData.fuelType,
+      name: formData.name.trim(),
+      busModel: formData.busModel?.trim() || 'Force Traveller',
+      category: formData.category || 'bus',
       seats: seatsNum,
-      pricePerHour: Number(formData.pricePerHour),
-      pricePerDay: Number(formData.pricePerDay),
-      extraKmRate: Number(formData.extraKmRate) || (seatsNum === 7 ? 7 : 6),
-      extraTimeRate: Number(formData.extraTimeRate) || 200,
-      securityDeposit: Number(formData.securityDeposit),
-      features: formData.features,
-      citiesAvailable: formData.citiesAvailable,
+      acType: formData.acType || 'ac',
+      pricePerDay: priceNum,
+      perKmRate: perKmNum,
+      includedKm: formData.includedKm?.trim() || '',
+      extraKmRate: extraKmNum,
+      description: formData.description?.trim() || '',
+      images: imageUrls.length > 0 ? imageUrls : ['/force-traveller.jpg'],
       isActive: Boolean(formData.isActive),
       isPopular: Boolean(formData.isPopular),
-      rating: Number(formData.rating) || 4.8,
-      description: formData.description,
-      registrationNo: formData.registrationNo?.trim() || '',
-      fastagId: formData.fastagId?.trim() || '',
-      odometer: Number(formData.odometer) || 0,
-      operationalStatus: formData.operationalStatus || 'available',
-      insuranceExpiry: formData.insuranceExpiry || '',
-      pucExpiry: formData.pucExpiry || '',
-      nextServiceKm: Number(formData.nextServiceKm) || 0,
+      rating: 4.9,
     };
 
     try {
       if (editingCar) {
         await updateCar(tenantId, editingCar.id, carDataPayload, user?.uid);
-        toast.success('Car updated successfully');
+        toast.success('Fleet item updated successfully');
       } else {
         await addCar(tenantId, carDataPayload, user?.uid);
-        toast.success('New car added to fleet');
+        toast.success('New vehicle / package added to fleet');
       }
       setIsModalOpen(false);
     } catch (err) {
       console.error(err);
-      toast.error('Failed to save car');
+      toast.error('Failed to save fleet item');
     } finally {
       setSubmitting(false);
     }
@@ -465,10 +238,24 @@ export default function AdminCars() {
         await deleteCar(tenantId, item.id);
         count++;
       }
-      toast.success(`Removed ${count} cars from database`);
+      toast.success(`Removed ${count} cars from database. Fleet is now completely empty.`);
     } catch (err) {
       console.error(err);
       toast.error('Failed to clear cars');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRestoreSampleFleet = async () => {
+    if (!window.confirm('Do you want to load default sample preset cars into Firestore?')) return;
+    try {
+      setLoading(true);
+      await seedDefaultFleet(tenantId, user?.uid);
+      toast.success('Sample presets loaded into fleet');
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to load sample fleet');
     } finally {
       setLoading(false);
     }
@@ -495,6 +282,21 @@ export default function AdminCars() {
           </div>
 
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <button
+              onClick={handleSeedForceFleet}
+              className="btn btn-secondary btn-sm"
+              style={{
+                color: '#FF4500',
+                borderColor: '#FF4500',
+                background: 'rgba(255, 69, 0, 0.08)',
+                fontWeight: 800,
+                fontSize: 12,
+                gap: 6,
+              }}
+              title="Add 4 Force Traveller packages (Lonavala, Mahabaleshwar, Mumbai Non-AC & AC)"
+            >
+              🚐 Add 4 Force Traveller Packages
+            </button>
             {cars.length > 0 && (
               <button onClick={handleClearAllCars} className="btn btn-secondary btn-sm" style={{ color: 'var(--color-error)', gap: 6, fontSize: 12 }}>
                 <FiTrash2 /> Clear Fleet
@@ -540,33 +342,12 @@ export default function AdminCars() {
 
           <div style={{ background: '#FFFFFF', padding: '10px 14px', borderRadius: 10, border: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
-              <span style={{ fontSize: 11, color: '#64748B', fontWeight: 700, textTransform: 'uppercase' }}>7-Seaters</span>
-              <strong style={{ fontSize: 18, color: '#2563EB', display: 'block', lineHeight: 1.1 }}>{cars.filter(c => c.seats === 7).length}</strong>
+              <span style={{ fontSize: 11, color: '#64748B', fontWeight: 700, textTransform: 'uppercase' }}>Buses & Travellers</span>
+              <strong style={{ fontSize: 18, color: '#2563EB', display: 'block', lineHeight: 1.1 }}>{cars.filter(c => Number(c.seats) >= 13).length}</strong>
             </div>
             <div style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(37,99,235,0.08)', color: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <FiUsers size={18} />
             </div>
-          </div>
-        </div>
-
-        {/* Business Rate Rule Summary */}
-        <div style={{
-          padding: '10px 14px',
-          borderRadius: 10,
-          background: 'linear-gradient(135deg, rgba(255, 69, 0, 0.05) 0%, #FFFFFF 100%)',
-          border: '1px solid rgba(255, 69, 0, 0.15)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: 8,
-          fontSize: 12,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <FiZap style={{ color: '#FF4500', flexShrink: 0 }} />
-            <span>
-              Business Rate Rules: <strong>₹7/km</strong> (7 Seater) • <strong>₹6/km</strong> (5 Seater) | Overtime: <strong>₹200/hr</strong> (Swift/Standard) • <strong>₹300/hr</strong> (Thar 4x4)
-            </span>
           </div>
         </div>
 
@@ -576,7 +357,7 @@ export default function AdminCars() {
             <FiSearch style={{ position: 'absolute', left: 12, top: 10, color: 'var(--color-text-3)' }} />
             <input
               type="text"
-              placeholder="Search by vehicle model, brand, category..."
+              placeholder="Search by package, bus model, tour destination, seats..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               className="form-input"
@@ -594,76 +375,110 @@ export default function AdminCars() {
               <div className="empty-state-icon">
                 <BsCarFront size={48} color="#FF4500" />
               </div>
-              <div className="empty-state-title" style={{ marginTop: 12 }}>No vehicles in fleet</div>
+              <div className="empty-state-title" style={{ marginTop: 12 }}>No vehicles or packages in fleet</div>
               <p style={{ fontSize: 13, color: '#64748B', margin: '8px 0 16px' }}>
-                Click below to add your first vehicle using the dynamic admin form.
+                Click below to add your first vehicle or tour package.
               </p>
-              <button onClick={handleOpenAdd} className="btn btn-primary btn-sm" style={{ background: '#FF4500', borderColor: '#FF4500' }}>
-                + Add New Vehicle
-              </button>
+              <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+                <button
+                  onClick={handleSeedForceFleet}
+                  className="btn btn-primary btn-sm"
+                  style={{ background: 'linear-gradient(135deg, #FF4500 0%, #E66E00 100%)', borderColor: '#FF4500', fontWeight: 800, padding: '9px 18px', fontSize: 13 }}
+                >
+                  🚐 Add 4 Force Traveller Packages
+                </button>
+                <button onClick={handleOpenAdd} className="btn btn-secondary btn-sm" style={{ padding: '9px 18px', fontSize: 13 }}>
+                  + Custom Vehicle / Package
+                </button>
+              </div>
             </div>
           ) : (
             <div className="table-wrapper">
               <table className="table">
                 <thead>
                   <tr>
-                    <th>Vehicle</th>
-                    <th>Category</th>
-                    <th>Transmission / Fuel</th>
-                    <th>Seating</th>
-                    <th>Daily Rate</th>
+                    <th>Vehicle / Tour Package</th>
+                    <th>Type</th>
+                    <th>Seats (Shita)</th>
+                    <th>AC Type</th>
+                    <th>Package Rate (₹)</th>
+                    <th>Rate / KM (₹)</th>
+                    <th>Included KM</th>
                     <th>Extra KM</th>
-                    <th>Extra Time</th>
-                    <th>Popular Choice</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredCars.map((c) => {
-                    const extraKm = c.extraKmRate || (c.seats === 7 ? 7 : 6);
-                    const extraTime = c.extraTimeRate || (c.name?.toLowerCase().includes('thar') ? 300 : 200);
+                    const seatsCount = Number(c.seats) || 17;
+                    const perKmRate = c.perKmRate || c.extraKmRate || 25;
+                    const extraKmRate = c.extraKmRate || perKmRate || 25;
+                    const isNonAc = c.acType === 'non_ac';
+                    const isBothAc = c.acType === 'both';
                     return (
                       <tr key={c.id}>
                         <td>
                           <div
                             onClick={() => handleOpenView(c)}
-                            style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}
-                            title="Click to view full specs & rates"
+                            style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}
+                            title="Click to view full package details"
                           >
                             <img
-                              src={c.images?.[0] || 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80'}
+                              src={c.images?.[0] || '/force-traveller.jpg'}
                               alt=""
-                              style={{ width: 40, height: 28, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }}
+                              onError={(e) => { e.target.src = '/force-traveller.jpg'; }}
+                              style={{ width: 48, height: 34, objectFit: 'cover', borderRadius: 6, flexShrink: 0, border: '1px solid #E2E8F0' }}
                             />
                             <div>
-                              <strong style={{ color: '#0F172A', display: 'block', fontSize: 13, lineHeight: 1.2 }}>{c.name}</strong>
-                              <span style={{ fontSize: 10.5, color: '#64748B' }}>{c.brand}</span>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                                <strong style={{ color: '#0F172A', display: 'block', fontSize: 13, lineHeight: 1.2 }}>{c.name}</strong>
+                                <span style={{ fontSize: 9.5, fontWeight: 800, background: '#FEF3C7', color: '#D97706', padding: '1px 5px', borderRadius: 4 }}>
+                                  {c.busModel || 'Force Traveller'}
+                                </span>
+                              </div>
+                              <span style={{ fontSize: 11, color: '#64748B' }}>{c.description ? c.description.slice(0, 38) + '...' : 'Tour & Rental'}</span>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <span className={`badge ${c.category === 'suv' || c.category === 'muv' ? 'badge-warning' : c.category === 'premium' ? 'badge-success' : 'badge-accent'}`} style={{ fontSize: 10.5, padding: '2px 6px' }}>
-                            {c.category ? c.category.toUpperCase() : 'CAR'}
+                          <span className={`badge ${c.category === 'bus' ? 'badge-warning' : c.category === 'package' ? 'badge-success' : 'badge-accent'}`} style={{ fontSize: 10.5, padding: '2px 8px' }}>
+                            {c.category ? c.category.toUpperCase() : 'BUS'}
                           </span>
                         </td>
                         <td>
-                          <span style={{ textTransform: 'capitalize', fontSize: 12, color: '#334155' }}>{c.transmission} • {c.fuelType}</span>
+                          <span style={{ fontSize: 12.5, fontWeight: 800, color: '#0F172A' }}>{seatsCount} Seats</span>
                         </td>
                         <td>
-                          <span style={{ fontSize: 12, fontWeight: 700, color: '#0F172A' }}>{c.seats || 5} Seats</span>
-                        </td>
-                        <td>
-                          <strong style={{ color: '#FF4500', fontSize: 13.5 }}>{formatCurrency(c.pricePerDay)}/d</strong>
-                        </td>
-                        <td>
-                          <span style={{ fontSize: 11.5, fontWeight: 800, color: '#FF4500', background: 'rgba(255, 69, 0,0.06)', padding: '2px 6px', borderRadius: 99 }}>
-                            ₹{extraKm}/km
+                          <span
+                            className={`badge ${isNonAc ? 'badge-secondary' : 'badge-accent'}`}
+                            style={{
+                              fontSize: 10.5,
+                              padding: '2px 8px',
+                              background: isNonAc ? '#E2E8F0' : isBothAc ? '#FEF3C7' : 'rgba(37,99,235,0.1)',
+                              color: isNonAc ? '#475569' : isBothAc ? '#D97706' : '#2563EB',
+                              fontWeight: 800,
+                            }}
+                          >
+                            {isNonAc ? 'Non-AC' : isBothAc ? 'AC / Non-AC' : 'AC'}
                           </span>
                         </td>
                         <td>
-                          <span style={{ fontSize: 11.5, fontWeight: 800, color: '#1E293B', background: '#F1F5F9', padding: '2px 6px', borderRadius: 99 }}>
-                            ₹{extraTime}/hr
+                          <strong style={{ color: '#FF4500', fontSize: 14 }}>{formatCurrency(c.pricePerDay || 0)}</strong>
+                        </td>
+                        <td>
+                          <span style={{ fontSize: 12, fontWeight: 800, color: '#16A34A', background: 'rgba(22,163,74,0.08)', padding: '2px 8px', borderRadius: 99 }}>
+                            ₹{perKmRate}/km
+                          </span>
+                        </td>
+                        <td>
+                          <span style={{ fontSize: 12, fontWeight: 600, color: '#334155' }}>
+                            {c.includedKm || '—'}
+                          </span>
+                        </td>
+                        <td>
+                          <span style={{ fontSize: 11.5, fontWeight: 700, color: '#D97706' }}>
+                            ₹{extraKmRate}/km
                           </span>
                         </td>
                         <td>
@@ -731,13 +546,13 @@ export default function AdminCars() {
             {/* Main Image & Quick Badges */}
             <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', height: 200, background: '#0F172A' }}>
               <img
-                src={viewingCar.images?.[0] || 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80'}
+                src={viewingCar.images?.[0] || 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80'}
                 alt={viewingCar.name}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
               <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', gap: 6 }}>
                 <span className="badge badge-accent" style={{ fontWeight: 800, textTransform: 'uppercase' }}>
-                  {viewingCar.category || 'CAR'}
+                  {viewingCar.category || 'BUS'}
                 </span>
                 {viewingCar.isPopular !== false && (
                   <span className="badge badge-warning" style={{ background: '#FF4500', color: '#FFFFFF', fontWeight: 800 }}>
@@ -747,52 +562,52 @@ export default function AdminCars() {
               </div>
             </div>
 
-            {/* Title & Brand */}
+            {/* Title */}
             <div>
               <span style={{ fontSize: 11, color: '#64748B', fontWeight: 800, textTransform: 'uppercase' }}>
-                {viewingCar.brand} • {viewingCar.transmission} • {viewingCar.fuelType}
+                {viewingCar.seats || 17} Seats • {viewingCar.acType === 'non_ac' ? 'Non-AC' : viewingCar.acType === 'both' ? 'AC / Non-AC' : 'AC'}
               </span>
               <h2 style={{ fontSize: 20, color: '#0F172A', fontWeight: 900, margin: '2px 0 0' }}>{viewingCar.name}</h2>
             </div>
 
             {/* Pricing Rate Grid */}
-            <div style={{ background: '#F8FAFC', padding: 12, borderRadius: 10, border: '1px solid #E2E8F0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 10 }}>
+            <div style={{ background: '#F8FAFC', padding: 12, borderRadius: 10, border: '1px solid #E2E8F0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 10 }}>
               <div>
-                <span style={{ fontSize: 10, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block' }}>Daily Tariff Rate</span>
-                <strong style={{ fontSize: 16, color: '#FF4500', display: 'block' }}>{formatCurrency(viewingCar.pricePerDay)}/day</strong>
+                <span style={{ fontSize: 10, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block' }}>Package / Base Rate</span>
+                <strong style={{ fontSize: 17, color: '#FF4500', display: 'block' }}>{formatCurrency(viewingCar.pricePerDay || 0)}</strong>
+              </div>
+              <div>
+                <span style={{ fontSize: 10, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block' }}>Rate Per KM</span>
+                <strong style={{ fontSize: 15, color: '#16A34A', display: 'block' }}>₹{viewingCar.perKmRate || viewingCar.extraKmRate || 25}/km</strong>
+              </div>
+              <div>
+                <span style={{ fontSize: 10, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block' }}>Included KM Limit</span>
+                <strong style={{ fontSize: 15, color: '#0F172A', display: 'block' }}>{viewingCar.includedKm || '—'}</strong>
               </div>
               <div>
                 <span style={{ fontSize: 10, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block' }}>Extra KM Rate</span>
-                <strong style={{ fontSize: 14, color: '#0F172A', display: 'block' }}>₹{viewingCar.extraKmRate || (viewingCar.seats === 7 ? 7 : 6)}/km</strong>
-              </div>
-              <div>
-                <span style={{ fontSize: 10, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block' }}>Extra Hour Charges</span>
-                <strong style={{ fontSize: 14, color: '#0F172A', display: 'block' }}>₹{viewingCar.extraTimeRate || (viewingCar.name?.toLowerCase().includes('thar') ? 300 : 200)}/hr</strong>
-              </div>
-              <div>
-                <span style={{ fontSize: 10, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block' }}>Security Deposit</span>
-                <strong style={{ fontSize: 14, color: '#16A34A', display: 'block' }}>{formatCurrency(viewingCar.securityDeposit || 2000)}</strong>
+                <strong style={{ fontSize: 15, color: '#D97706', display: 'block' }}>₹{viewingCar.extraKmRate || viewingCar.perKmRate || 25}/km</strong>
               </div>
             </div>
 
             {/* Specifications Summary */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
               <div style={{ padding: 10, borderRadius: 8, background: '#FFFFFF', border: '1px solid #E2E8F0' }}>
-                <span style={{ fontSize: 11, color: '#64748B', display: 'block' }}>Seating Capacity</span>
-                <strong style={{ fontSize: 13, color: '#0F172A' }}>{viewingCar.seats || 5} Seats</strong>
+                <span style={{ fontSize: 11, color: '#64748B', display: 'block' }}>Seating Capacity (Shita)</span>
+                <strong style={{ fontSize: 13, color: '#0F172A' }}>{viewingCar.seats || 17} Seats</strong>
               </div>
               <div style={{ padding: 10, borderRadius: 8, background: '#FFFFFF', border: '1px solid #E2E8F0' }}>
-                <span style={{ fontSize: 11, color: '#64748B', display: 'block' }}>Status</span>
+                <span style={{ fontSize: 11, color: '#64748B', display: 'block' }}>Fleet Visibility</span>
                 <strong style={{ fontSize: 13, color: viewingCar.isActive !== false ? '#16A34A' : '#FF5500' }}>
-                  {viewingCar.isActive !== false ? '✅ Active in Fleet' : '🔴 Inactive'}
+                  {viewingCar.isActive !== false ? '✅ Active on Website' : '🔴 Hidden'}
                 </strong>
               </div>
             </div>
 
-            {/* Description */}
+            {/* Description / Inclusions */}
             {viewingCar.description && (
               <div style={{ padding: 10, borderRadius: 8, background: '#FFFFFF', border: '1px solid #E2E8F0' }}>
-                <span style={{ fontSize: 11, color: '#64748B', fontWeight: 700, textTransform: 'uppercase', display: 'block', marginBottom: 2 }}>Vehicle Notes</span>
+                <span style={{ fontSize: 11, color: '#64748B', fontWeight: 700, textTransform: 'uppercase', display: 'block', marginBottom: 2 }}>Inclusions & Notes</span>
                 <p style={{ fontSize: 12.5, color: '#334155', margin: 0, lineHeight: 1.5 }}>{viewingCar.description}</p>
               </div>
             )}
@@ -807,7 +622,7 @@ export default function AdminCars() {
                 className="btn btn-primary btn-sm"
                 style={{ background: '#FF4500', borderColor: '#FF4500', fontWeight: 800, padding: '7px 16px' }}
               >
-                <FiEdit2 size={13} /> Edit Vehicle Data
+                <FiEdit2 size={13} /> Edit Package
               </button>
               <button
                 type="button"
@@ -822,351 +637,259 @@ export default function AdminCars() {
         )}
       </Modal>
 
-      {/* Dynamic Add / Edit Vehicle Modal */}
+      {/* 🚐 Clean Travels Fleet & Tour Package Add / Edit Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={editingCar ? `Edit Vehicle — ${editingCar.name}` : 'Add New Vehicle to Dynamic Fleet'}
-        maxWidth={700}
+        title={editingCar ? `Edit Package / Vehicle — ${editingCar.name}` : 'Add New Vehicle / Tour Package'}
+        maxWidth={640}
       >
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           
-          {/* Quick Vehicle Preset Shortcuts */}
-          {!editingCar && (
-            <div style={{
-              background: '#F8FAFC',
-              border: '1px solid #E2E8F0',
-              borderRadius: 12,
-              padding: 12,
-            }}>
-              <span style={{ fontSize: 11, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: 4, marginBottom: 8 }}>
-                <FiZap style={{ color: '#FF4500' }} /> Quick Fill Preset Templates:
-              </span>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                {CLIENT_PRESETS.map((preset, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => handleApplyPreset(preset)}
-                    style={{
-                      padding: '4px 10px',
-                      borderRadius: 99,
-                      background: '#FFFFFF',
-                      border: '1px solid #CBD5E1',
-                      fontSize: 11.5,
-                      fontWeight: 700,
-                      color: '#1E293B',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 4,
-                    }}
-                  >
-                    <span>{preset.name} ({formatCurrency(preset.pricePerDay)})</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Form Header info notice */}
-          <div style={{
-            padding: '8px 12px',
-            borderRadius: 8,
-            background: 'rgba(255, 69, 0, 0.05)',
-            border: '1px solid rgba(255, 69, 0, 0.15)',
-            fontSize: 11.5,
-            color: '#111318',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-          }}>
-            <FiInfo size={14} style={{ color: '#FF4500', flexShrink: 0 }} />
-            <span>
-              Auto-Logic: Typing "Thar" sets ₹300/hr extra time; "Ertiga" or 7-Seater sets ₹7/km extra km.
-            </span>
-          </div>
-
+          {/* Vehicle / Tour Package Title & Bus Model */}
           <div className="grid-2" style={{ gap: 10 }}>
-            <div className="form-group">
-              <label className="form-label">Car Model Name *</label>
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 12, fontWeight: 700, marginBottom: 4 }}>
+                Vehicle / Tour Package Name *
+              </label>
               <input
                 type="text"
                 required
                 className="form-input"
-                placeholder="e.g. Maruti Suzuki Swift ZXi"
+                placeholder="e.g. Force Traveller - Lonavala Package"
                 value={formData.name}
-                onChange={e => handleNameChange(e.target.value)}
+                onChange={e => setFormData({ ...formData, name: e.target.value })}
+                style={{ fontSize: 13, height: 40, fontWeight: 700 }}
               />
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Brand *</label>
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 12, fontWeight: 700, marginBottom: 4 }}>
+                Bus Model / Vehicle *
+              </label>
               <input
                 type="text"
                 required
                 className="form-input"
-                placeholder="e.g. Maruti / Mahindra / Hyundai"
-                value={formData.brand}
-                onChange={e => setFormData({ ...formData, brand: e.target.value })}
+                placeholder="e.g. Force Traveller"
+                value={formData.busModel || 'Force Traveller'}
+                onChange={e => setFormData({ ...formData, busModel: e.target.value })}
+                style={{ fontSize: 13, height: 40, fontWeight: 700 }}
               />
             </div>
           </div>
 
-          <div className="grid-4" style={{ gap: 10 }}>
-            <div className="form-group">
-              <label className="form-label">Category</label>
+          {/* Row 1: Fleet Type, Seating (Shita), AC Configuration */}
+          <div className="grid-3" style={{ gap: 10 }}>
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>
+                Category / Fleet Type
+              </label>
               <select
                 className="form-select"
                 value={formData.category}
                 onChange={e => setFormData({ ...formData, category: e.target.value })}
+                style={{ fontSize: 12.5, height: 38 }}
               >
-                <option value="hatchback">Hatchback (Swift, i20, Baleno)</option>
-                <option value="sedan">Sedan & CNG (Dzire)</option>
-                <option value="suv">SUV & 4x4 (Thar, Punch, Venue)</option>
-                <option value="muv">7-Seater MUV (Ertiga)</option>
-                <option value="premium">Luxury & Executive</option>
+                <option value="bus">Bus & Tempo Traveller</option>
+                <option value="package">Tour Package</option>
+                <option value="muv">7-Seater MUV (Ertiga / Innova)</option>
+                <option value="car">Cab / Car (Swift / Dzire)</option>
               </select>
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Transmission</label>
-              <select
-                className="form-select"
-                value={formData.transmission}
-                onChange={e => setFormData({ ...formData, transmission: e.target.value })}
-              >
-                <option value="manual">Manual</option>
-                <option value="automatic">Automatic</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Fuel Type</label>
-              <select
-                className="form-select"
-                value={formData.fuelType}
-                onChange={e => setFormData({ ...formData, fuelType: e.target.value })}
-              >
-                <option value="petrol">Petrol</option>
-                <option value="diesel">Diesel</option>
-                <option value="cng">CNG</option>
-                <option value="electric">Electric</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Seating Capacity</label>
-              <select
-                className="form-select"
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>
+                Seating Capacity (Seats) *
+              </label>
+              <input
+                type="number"
+                min="1"
+                required
+                className="form-input"
+                placeholder="e.g. 17 or 20"
                 value={formData.seats}
-                onChange={e => {
-                  const s = Number(e.target.value);
-                  setFormData({
-                    ...formData,
-                    seats: s,
-                    extraKmRate: s === 7 ? 7 : 6,
-                  });
-                }}
+                onChange={e => setFormData({ ...formData, seats: e.target.value })}
+                style={{ fontSize: 12.5, height: 38, fontWeight: 800 }}
+              />
+            </div>
+
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>
+                AC Configuration *
+              </label>
+              <select
+                className="form-select"
+                value={formData.acType}
+                onChange={e => setFormData({ ...formData, acType: e.target.value })}
+                style={{ fontSize: 12.5, height: 38 }}
               >
-                <option value={4}>4 Seater</option>
-                <option value={5}>5 Seater</option>
-                <option value={6}>6 Seater</option>
-                <option value={7}>7 Seater</option>
+                <option value="ac">AC (Air Conditioned)</option>
+                <option value="non_ac">Non-AC</option>
+                <option value="both">Both AC & Non-AC Available</option>
               </select>
             </div>
           </div>
 
-          <div className="grid-3" style={{ gap: 10 }}>
-            <div className="form-group">
-              <label className="form-label">Daily Price (₹) *</label>
+          {/* Row 2: Package Rate & Per KM Rate */}
+          <div className="grid-2" style={{ gap: 10 }}>
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>
+                Package / Base Rate (₹) *
+              </label>
               <input
                 type="number"
                 required
                 className="form-input"
-                placeholder="2300"
+                placeholder="e.g. 9500, 11000, 12000, 15000"
                 value={formData.pricePerDay}
                 onChange={e => setFormData({ ...formData, pricePerDay: e.target.value })}
+                style={{ fontSize: 13, height: 38, fontWeight: 800, color: '#FF4500' }}
               />
+              <span style={{ fontSize: 10.5, color: '#64748B', display: 'block', marginTop: 2 }}>
+                Fixed tour package price or base day rate
+              </span>
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Extra KM Rate (₹/km) *</label>
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>
+                Rate Per KM (₹/km) *
+              </label>
               <input
                 type="number"
                 required
                 className="form-input"
-                placeholder="6"
-                value={formData.extraKmRate}
-                onChange={e => setFormData({ ...formData, extraKmRate: e.target.value })}
+                placeholder="e.g. 25, 27, 29"
+                value={formData.perKmRate}
+                onChange={e => setFormData({ ...formData, perKmRate: e.target.value })}
+                style={{ fontSize: 13, height: 38, fontWeight: 800, color: '#16A34A' }}
               />
-              <span style={{ fontSize: 10, color: '#64748B' }}>5-seater = ₹6 | 7-seater = ₹7</span>
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Extra Time Rate (₹/hr) *</label>
-              <input
-                type="number"
-                required
-                className="form-input"
-                placeholder="200"
-                value={formData.extraTimeRate}
-                onChange={e => setFormData({ ...formData, extraTimeRate: e.target.value })}
-              />
-              <span style={{ fontSize: 10, color: '#64748B' }}>Swift = ₹200 | Thar = ₹300</span>
+              <span style={{ fontSize: 10.5, color: '#64748B', display: 'block', marginTop: 2 }}>
+                Rate per km for distance billing (e.g. ₹25/km, ₹29/km)
+              </span>
             </div>
           </div>
 
-          <div className="grid-3" style={{ gap: 10 }}>
-            <div className="form-group">
-              <label className="form-label">Refundable Deposit (₹)</label>
+          {/* Row 3: Included KM Limit & Extra KM Rate */}
+          <div className="grid-2" style={{ gap: 10 }}>
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>
+                Included KM Limit (Optional)
+              </label>
+              <input
+                type="text"
+                className="form-input"
+                placeholder="e.g. 350 km or Lonavala Round Trip"
+                value={formData.includedKm}
+                onChange={e => setFormData({ ...formData, includedKm: e.target.value })}
+                style={{ fontSize: 12.5, height: 38 }}
+              />
+              <span style={{ fontSize: 10.5, color: '#64748B', display: 'block', marginTop: 2 }}>
+                Package distance limit (e.g. 350 km)
+              </span>
+            </div>
+
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>
+                Extra KM Rate (₹/km)
+              </label>
               <input
                 type="number"
                 className="form-input"
-                placeholder="2000"
-                value={formData.securityDeposit}
-                onChange={e => setFormData({ ...formData, securityDeposit: e.target.value })}
+                placeholder="e.g. 25 or 28"
+                value={formData.extraKmRate}
+                onChange={e => setFormData({ ...formData, extraKmRate: e.target.value })}
+                style={{ fontSize: 12.5, height: 38 }}
               />
+              <span style={{ fontSize: 10.5, color: '#64748B', display: 'block', marginTop: 2 }}>
+                Rate charged beyond package KM limit
+              </span>
             </div>
+          </div>
 
-            <div className="form-group">
-              <label className="form-label">Fleet Visibility</label>
+          {/* Inclusions & Highlights Note */}
+          <div className="form-group" style={{ margin: 0 }}>
+            <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>
+              Package Inclusions & Features (Optional)
+            </label>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="e.g. Push-back seats, Driver allowance included, Music system, Clean interior, Toll extra"
+              value={formData.description}
+              onChange={e => setFormData({ ...formData, description: e.target.value })}
+              style={{ fontSize: 12.5, height: 38 }}
+            />
+          </div>
+
+          {/* Visibility & Badges */}
+          <div className="grid-2" style={{ gap: 10 }}>
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>Website Visibility</label>
               <select
                 className="form-select"
                 value={formData.isActive ? 'active' : 'inactive'}
                 onChange={e => setFormData({ ...formData, isActive: e.target.value === 'active' })}
+                style={{ fontSize: 12.5, height: 38 }}
               >
                 <option value="active">Active (Visible on Website)</option>
                 <option value="inactive">Inactive (Hidden)</option>
               </select>
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Popular Showcase</label>
+            <div className="form-group" style={{ margin: 0 }}>
+              <label className="form-label" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 4 }}>Showcase Badge</label>
               <select
                 className="form-select"
                 value={formData.isPopular ? 'popular' : 'standard'}
                 onChange={e => setFormData({ ...formData, isPopular: e.target.value === 'popular' })}
+                style={{ fontSize: 12.5, height: 38 }}
               >
-                <option value="popular">Mark as Popular Choice</option>
+                <option value="popular">Mark as Popular Package</option>
                 <option value="standard">Standard Fleet Listing</option>
               </select>
             </div>
           </div>
 
-          {/* Fleet Operations & Maintenance Info */}
-          <div style={{ background: '#F8FAFC', padding: 14, borderRadius: 12, border: '1px solid #CBD5E1' }}>
-            <span style={{ fontSize: 11, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginBottom: 10 }}>
-              🚙 Operational Fleet Details & Maintenance Tracking
-            </span>
-            <div className="grid-3" style={{ gap: 10 }}>
-              <div className="form-group">
-                <label className="form-label">Registration No. Plate</label>
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="e.g. MH 12 AB 1234"
-                  value={formData.registrationNo}
-                  onChange={e => setFormData({ ...formData, registrationNo: e.target.value })}
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Operational Status</label>
-                <select
-                  className="form-select"
-                  value={formData.operationalStatus}
-                  onChange={e => setFormData({ ...formData, operationalStatus: e.target.value })}
-                >
-                  <option value="available">🟢 Available for Rent</option>
-                  <option value="rented">🟡 Currently Rented / Out</option>
-                  <option value="maintenance">🛠️ Under Maintenance / Service</option>
-                  <option value="out_of_service">🔴 Out of Service</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label className="form-label">Odometer Reading (KM)</label>
-                <input
-                  type="number"
-                  className="form-input"
-                  placeholder="e.g. 35400"
-                  value={formData.odometer}
-                  onChange={e => setFormData({ ...formData, odometer: e.target.value })}
-                />
-              </div>
-            </div>
-
-            <div className="grid-3" style={{ gap: 10, marginTop: 10 }}>
-              <div className="form-group">
-                <label className="form-label">Fastag Serial ID</label>
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="e.g. FT-98765432"
-                  value={formData.fastagId}
-                  onChange={e => setFormData({ ...formData, fastagId: e.target.value })}
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Insurance Expiry Date</label>
-                <input
-                  type="date"
-                  className="form-input"
-                  value={formData.insuranceExpiry}
-                  onChange={e => setFormData({ ...formData, insuranceExpiry: e.target.value })}
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">PUC Expiry Date</label>
-                <input
-                  type="date"
-                  className="form-input"
-                  value={formData.pucExpiry}
-                  onChange={e => setFormData({ ...formData, pucExpiry: e.target.value })}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Device Image File Upload + Image URL Section */}
-          <div className="form-group" style={{ background: '#F8FAFC', padding: 14, borderRadius: 12, border: '1px solid #E2E8F0' }}>
+          {/* Photos Upload / URL */}
+          <div className="form-group" style={{ background: '#F8FAFC', padding: 12, borderRadius: 10, border: '1px solid #E2E8F0', margin: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 6 }}>
-              <label className="form-label" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 6 }}>
-                <FiImage style={{ color: '#FF4500' }} /> Vehicle Photos (Upload from Device or Paste Image Links)
+              <label className="form-label" style={{ margin: 0, fontSize: 11.5, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <FiImage style={{ color: '#FF4500' }} /> Vehicle Photo (Upload or Paste Link)
               </label>
 
               <input
                 type="file"
                 accept="image/*"
                 multiple
-                id="car-photo-upload-input"
+                id="travel-photo-upload-input"
                 style={{ display: 'none' }}
                 onChange={handleFileUpload}
               />
               <label
-                htmlFor="car-photo-upload-input"
+                htmlFor="travel-photo-upload-input"
                 className="btn btn-secondary btn-sm"
                 style={{
                   cursor: 'pointer',
-                  fontSize: 12,
-                  padding: '5px 12px',
+                  fontSize: 11.5,
+                  padding: '4px 10px',
                   background: '#FFFFFF',
                   color: '#FF4500',
                   borderColor: '#FF4500',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: 6,
+                  gap: 5,
                 }}
               >
-                <FiUpload size={14} /> Upload Photos from Device
+                <FiUpload size={13} /> Upload from Device
               </label>
             </div>
 
-            {/* Thumbnail Previews Grid */}
+            {/* Thumbnail Previews */}
             {imageList.length > 0 && (
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
                 {imageList.map((imgUrl, index) => (
-                  <div key={index} style={{ position: 'relative', width: 64, height: 48, borderRadius: 6, overflow: 'hidden', border: '1px solid #CBD5E1' }}>
+                  <div key={index} style={{ position: 'relative', width: 60, height: 44, borderRadius: 6, overflow: 'hidden', border: '1px solid #CBD5E1' }}>
                     <img src={imgUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <button
                       type="button"
@@ -1175,8 +898,8 @@ export default function AdminCars() {
                         position: 'absolute',
                         top: 2,
                         right: 2,
-                        width: 18,
-                        height: 18,
+                        width: 16,
+                        height: 16,
                         borderRadius: '50%',
                         background: 'rgba(255, 69, 0, 0.9)',
                         color: '#FFFFFF',
@@ -1184,12 +907,12 @@ export default function AdminCars() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: 10,
+                        fontSize: 9,
                         cursor: 'pointer',
                       }}
                       title="Remove image"
                     >
-                      <FiX size={12} />
+                      <FiX size={10} />
                     </button>
                   </div>
                 ))}
@@ -1202,7 +925,7 @@ export default function AdminCars() {
               placeholder="Or paste image URLs (one per line)..."
               value={formData.imagesText}
               onChange={e => setFormData({ ...formData, imagesText: e.target.value })}
-              style={{ fontSize: 12 }}
+              style={{ fontSize: 11.5, padding: 8 }}
             />
           </div>
 
@@ -1210,9 +933,9 @@ export default function AdminCars() {
             type="submit"
             disabled={submitting}
             className="btn btn-primary btn-lg w-full"
-            style={{ background: '#FF4500', borderColor: '#FF4500', marginTop: 4 }}
+            style={{ background: '#FF4500', borderColor: '#FF4500', marginTop: 4, height: 42, fontSize: 14, fontWeight: 800 }}
           >
-            {submitting ? 'Saving to Firestore...' : editingCar ? 'Update Vehicle Listing' : 'Save & Add Vehicle to Live Fleet'}
+            {submitting ? 'Saving to Fleet...' : editingCar ? 'Update Fleet Listing' : 'Save & Add to Live Fleet'}
           </button>
         </form>
       </Modal>

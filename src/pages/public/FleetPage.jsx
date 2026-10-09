@@ -98,19 +98,33 @@ export default function FleetPage() {
                   <BsCarFront size={28} />
                 </div>
                 <h3 style={{ fontSize: 18, color: '#111318', fontWeight: 800, marginBottom: 6 }}>
-                  No Cars Found in This Category
+                  {cars.length === 0 ? 'Fleet Being Updated' : 'No Cars Found in This Category'}
                 </h3>
                 <p style={{ fontSize: 13, color: '#64748B', margin: '0 0 16px' }}>
-                  Try selecting another category like All Fleet or Popular Choice.
+                  {cars.length === 0
+                    ? 'Our fleet catalog is currently being updated. Please contact us on WhatsApp for live vehicle options.'
+                    : 'Try selecting another category like All Fleet or Popular Choice.'}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => setSelectedCategory('all')}
-                  className="btn btn-primary btn-sm"
-                  style={{ padding: '8px 20px', borderRadius: 'var(--radius-full)' }}
-                >
-                  Show All Cars ➔
-                </button>
+                {cars.length === 0 ? (
+                  <a
+                    href={`https://wa.me/${settings?.whatsapp || '918485877633'}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')}%2C%20I%20want%20to%20inquire%20about%20vehicle%20availability.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm"
+                    style={{ padding: '8px 20px', borderRadius: 'var(--radius-full)', background: '#25D366', borderColor: '#25D366', color: '#FFFFFF', textDecoration: 'none' }}
+                  >
+                    Contact on WhatsApp
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCategory('all')}
+                    className="btn btn-primary btn-sm"
+                    style={{ padding: '8px 20px', borderRadius: 'var(--radius-full)' }}
+                  >
+                    Show All Cars ➔
+                  </button>
+                )}
               </div>
             ) : (
               <div className="grid-fleet-catalog">

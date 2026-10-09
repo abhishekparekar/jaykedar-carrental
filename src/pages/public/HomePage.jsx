@@ -316,6 +316,57 @@ export default function HomePage() {
               <CarSkeleton />
               <CarSkeleton />
             </div>
+          ) : cars.length === 0 ? (
+            <div style={{
+              textAlign: 'center',
+              padding: '48px 24px',
+              background: '#FFFFFF',
+              borderRadius: 20,
+              border: '1px solid #E2E8F0',
+              maxWidth: 550,
+              margin: '0 auto',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+            }}>
+              <div style={{
+                width: 56,
+                height: 56,
+                borderRadius: '50%',
+                background: 'rgba(255, 69, 0, 0.08)',
+                color: '#FF4500',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 16px',
+              }}>
+                <BsCarFront size={26} />
+              </div>
+              <h3 style={{ fontSize: 18, color: '#0F172A', fontWeight: 800, marginBottom: 8 }}>
+                Fleet Being Updated
+              </h3>
+              <p style={{ fontSize: 13, color: '#64748B', margin: '0 0 20px', lineHeight: 1.5 }}>
+                Our fleet is currently being updated. You can still submit a custom inquiry below or message us directly on WhatsApp.
+              </p>
+              <a
+                href={`https://wa.me/${settings?.whatsapp || '918485877633'}?text=Hi%20${encodeURIComponent(settings?.businessName || 'Jay Kedar Car Rental')}%2C%20I%20want%20to%20inquire%20about%20vehicle%20availability.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-sm"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  padding: '10px 20px',
+                  fontWeight: 700,
+                  borderRadius: 99,
+                  background: '#25D366',
+                  borderColor: '#25D366',
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                }}
+              >
+                <BsWhatsapp size={16} /> Contact on WhatsApp
+              </a>
+            </div>
           ) : (
             <>
               <div className="grid-fleet-catalog">

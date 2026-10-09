@@ -11,12 +11,14 @@ export default function RevvCarCard({ car, onEnquire }) {
 
   const primaryImage = car.images && car.images.length > 0
     ? car.images[0]
-    : 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=600&q=80';
+    : '/force-traveller.jpg';
 
-  const categoryName = (car.category || 'Fleet').toUpperCase();
-  const seatsNum = car.seats || 5;
-  const extraKm = car.extraKmRate || (seatsNum === 7 ? 7 : 6);
-  const extraTime = car.extraTimeRate || (car.name?.toLowerCase().includes('thar') ? 300 : 200);
+  const busModel = car.busModel || 'Force Traveller';
+  const categoryName = (car.category || 'Bus').toUpperCase();
+  const seatsNum = Number(car.seats) || 17;
+  const perKmRate = car.perKmRate || car.extraKmRate || 25;
+  const extraKmRate = car.extraKmRate || perKmRate || 25;
+  const acLabel = car.acType === 'non_ac' ? 'Non-AC' : car.acType === 'both' ? 'AC / Non-AC' : 'AC';
 
   const handleCardClick = () => navigate(`/cars/${car.id}`);
 
@@ -49,20 +51,39 @@ export default function RevvCarCard({ car, onEnquire }) {
             decoding="async"
             className="vk-card-img"
             onError={(e) => {
-              e.target.src = 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=600&q=80';
+              e.target.src = '/force-traveller.jpg';
             }}
           />
 
           <div className="vk-card-badge-km">
-            +₹{extraKm}/km
+            ₹{perKmRate}/km
+          </div>
+
+          <div style={{
+            position: 'absolute',
+            bottom: 8,
+            left: 8,
+            background: 'rgba(15, 23, 42, 0.82)',
+            backdropFilter: 'blur(4px)',
+            color: '#FFFFFF',
+            fontSize: 10.5,
+            fontWeight: 800,
+            padding: '3px 8px',
+            borderRadius: 4,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 4,
+            letterSpacing: '0.3px',
+          }}>
+            <span>🚐 {busModel}</span>
           </div>
         </div>
 
         {/* Card Body */}
         <div className="vk-card-body">
           <div className="vk-card-header">
-            <span className="vk-card-modelyear">
-              {car.modelYear || `${car.brand || 'VK'} 2025`}
+            <span className="vk-card-modelyear" style={{ color: '#FF4500', fontWeight: 900 }}>
+              {busModel} • {seatsNum} Seater
             </span>
             <span className="vk-card-category-tag">
               {categoryName}
@@ -74,29 +95,29 @@ export default function RevvCarCard({ car, onEnquire }) {
           </h3>
 
           <p className="vk-card-subtitle">
-            {car.brand || car.name.split(' ')[0]} • {car.fuelType ? car.fuelType.toUpperCase() : 'PETROL'}
+            <strong style={{ color: '#0F172A' }}>{busModel}</strong> • {seatsNum} Seats • {acLabel} {car.includedKm ? `• ${car.includedKm}` : ''}
           </p>
 
-          {/* Compact 2x2 Specs Bar for Equal Card Heights */}
+          {/* Compact 2x2 Specs Bar tailored for Travels & Packages */}
           <div className="vk-card-specs">
             <div className="vk-spec-item">
-              <BsCarFront size={11} color="#FF9900" style={{ flexShrink: 0 }} />
-              <span>{categoryName}</span>
+              <FiUsers size={12} color="#FF4500" style={{ flexShrink: 0 }} />
+              <span>{seatsNum} Seats</span>
             </div>
 
             <div className="vk-spec-item">
-              <FiSettings size={11} color="#FF9900" style={{ flexShrink: 0 }} />
-              <span style={{ textTransform: 'capitalize' }}>{car.transmission || 'Manual'}</span>
+              <BsCarFront size={12} color="#FF4500" style={{ flexShrink: 0 }} />
+              <span>{acLabel}</span>
             </div>
 
             <div className="vk-spec-item">
-              <FiUsers size={11} color="#FF9900" style={{ flexShrink: 0 }} />
-              <span>{seatsNum} seats</span>
+              <span style={{ fontSize: 11, fontWeight: 800, color: '#16A34A' }}>₹{perKmRate}/km</span>
+              <span>Rate</span>
             </div>
 
             <div className="vk-spec-item">
-              <FiClock size={11} color="#FF9900" style={{ flexShrink: 0 }} />
-              <span>₹{extraTime}/hr</span>
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#D97706' }}>+₹{extraKmRate}</span>
+              <span>Extra/km</span>
             </div>
           </div>
         </div>
@@ -105,9 +126,11 @@ export default function RevvCarCard({ car, onEnquire }) {
         <div className="vk-card-footer">
           <div style={{ minWidth: 0 }}>
             <span className="vk-card-price">
-              {formatCurrency(car.pricePerDay || 2300)}
+              {formatCurrency(car.pricePerDay || 0)}
             </span>
-            <span className="vk-card-perday">per 24 hrs</span>
+            <span className="vk-card-perday">
+              {car.includedKm ? car.includedKm : 'Package / Day'}
+            </span>
           </div>
 
           <button
