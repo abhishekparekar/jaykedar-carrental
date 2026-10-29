@@ -11,7 +11,6 @@ import ProtectedRoute from './components/guards/ProtectedRoute';
 
 // UI Components
 import WhatsAppButton from './components/ui/WhatsAppButton';
-import InstagramButton from './components/ui/InstagramButton';
 
 // Public Pages
 import HomePage from './pages/public/HomePage';
@@ -66,8 +65,7 @@ export default function App() {
               }}
             />
 
-            {/* Floating Action Buttons */}
-            <InstagramButton />
+            {/* Floating Action Button */}
             <WhatsAppButton />
 
             <Routes>

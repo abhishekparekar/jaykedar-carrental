@@ -4,8 +4,10 @@ import { useTenant } from '../../contexts/TenantContext';
 
 export default function WhatsAppButton() {
   const { settings } = useTenant();
-  const rawNum = settings?.whatsapp || settings?.phone || '918485877633';
-  const phoneNumber = rawNum.replace(/\D/g, '');
+  const rawNum = settings?.whatsapp || '918446469216';
+  const phoneNumber = rawNum.replace(/\D/g, '').startsWith('91') 
+    ? rawNum.replace(/\D/g, '') 
+    : `91${rawNum.replace(/\D/g, '')}`;
   const bizName = settings?.businessName || "Jay Kedarnath Tours & Travels";
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
 
@@ -36,7 +38,7 @@ export default function WhatsAppButton() {
         cursor: 'pointer',
         textDecoration: 'none',
       }}
-      title={`Chat with ${bizName} on WhatsApp (${settings?.phone || '+91 8485877633'})`}
+      title={`Chat with ${bizName} on WhatsApp (+91 8446469216)`}
       aria-label="Chat on WhatsApp"
     >
       <BsWhatsapp />

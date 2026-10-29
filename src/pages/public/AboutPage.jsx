@@ -37,7 +37,7 @@ const PROMISES = [
   {
     icon: <FiClock size={24} />,
     title: '24/7 WhatsApp & Phone Support',
-    desc: 'Our local Pune support team is available round the clock at +91 8485877633.',
+    desc: 'Our local Pune support team is available round the clock at 8446469216 / 9049655717 / 9923336366.',
   },
   {
     icon: <FiStar size={24} />,
@@ -228,6 +228,82 @@ export default function AboutPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* ─── OFFICIAL REGISTRATION & CREDENTIALS CARD ─── */}
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(255, 69, 0, 0.05) 0%, #FFFFFF 100%)',
+            borderRadius: 18,
+            padding: '24px 22px',
+            border: '1.5px solid rgba(255, 69, 0, 0.25)',
+            boxShadow: '0 6px 24px rgba(15, 23, 42, 0.05)',
+            marginBottom: 32,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10, marginBottom: 16 }}>
+              <div>
+                <span className="section-label-red" style={{ margin: '0 0 6px', display: 'inline-block' }}>
+                  Legal &amp; Business Credentials
+                </span>
+                <h3 style={{ fontSize: 18, fontWeight: 900, color: '#111827', margin: 0 }}>
+                  Government Registered &amp; Verified Travel Operator
+                </h3>
+              </div>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                background: '#DCFCE7',
+                color: '#15803D',
+                padding: '6px 14px',
+                borderRadius: 99,
+                fontSize: 12,
+                fontWeight: 900,
+              }}>
+                <FiShield size={14} /> 100% Tax Compliant
+              </div>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: 12,
+            }}>
+              <div style={{ background: '#FFFFFF', padding: '14px 16px', borderRadius: 12, border: '1px solid #E2E8F0' }}>
+                <span style={{ fontSize: 11, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>
+                  GSTIN Registration NO.
+                </span>
+                <strong style={{ fontSize: 15, color: '#FF4500', fontFamily: 'monospace', letterSpacing: '0.6px' }}>
+                  {settings?.gstin || '27BYAPM5338L1Z3'}
+                </strong>
+              </div>
+
+              <div style={{ background: '#FFFFFF', padding: '14px 16px', borderRadius: 12, border: '1px solid #E2E8F0' }}>
+                <span style={{ fontSize: 11, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>
+                  Office Address
+                </span>
+                <span style={{ fontSize: 13, color: '#111827', fontWeight: 700, lineHeight: 1.4, display: 'block' }}>
+                  {settings?.address || 'Flat No. B1-17, Siddhivinayak complex Shinde Pool, NDA Road, Shivne, Pune 411023.'}
+                </span>
+              </div>
+
+              <div style={{ background: '#FFFFFF', padding: '14px 16px', borderRadius: 12, border: '1px solid #E2E8F0' }}>
+                <span style={{ fontSize: 11, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>
+                  Email Address
+                </span>
+                <a href={`mailto:${settings?.email || 'shashikantmaske1958@gmail.com'}`} style={{ fontSize: 13, color: '#111827', fontWeight: 800, textDecoration: 'none', wordBreak: 'break-all' }}>
+                  {settings?.email || 'shashikantmaske1958@gmail.com'}
+                </a>
+              </div>
+
+              <div style={{ background: '#FFFFFF', padding: '14px 16px', borderRadius: 12, border: '1px solid #E2E8F0' }}>
+                <span style={{ fontSize: 11, color: '#64748B', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>
+                  Helpline Mobiles
+                </span>
+                <span style={{ fontSize: 13, color: '#111827', fontWeight: 800, display: 'block' }}>
+                  8446469216 / 9049655717 / 9923336366
+                </span>
+              </div>
             </div>
           </div>
 

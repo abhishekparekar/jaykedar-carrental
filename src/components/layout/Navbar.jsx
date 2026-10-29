@@ -24,8 +24,16 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const phoneRaw = settings?.phone || '+91 8485877633';
-  const cleanPhone = phoneRaw.replace(/\D/g, '');
+  const phoneList = (settings?.phones && settings.phones.length > 0)
+    ? settings.phones
+    : ['8446469216', '9049655717', '9923336366'];
+  const primaryPhone = phoneList[0] || '8446469216';
+  const cleanPhone = primaryPhone.replace(/\D/g, '');
+  const phoneDisplay = '+91 8446469216';
+  const rawWhatsapp = settings?.whatsapp || '918446469216';
+  const cleanWhatsapp = rawWhatsapp.replace(/\D/g, '').startsWith('91') 
+    ? rawWhatsapp.replace(/\D/g, '') 
+    : `91${rawWhatsapp.replace(/\D/g, '')}`;
 
   const handleLogoClick = (e) => {
     setMenuOpen(false);
@@ -123,30 +131,8 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* ── Right Actions: Desktop Call/Book & Mobile Clean Buttons ── */}
+          {/* ── Right Actions: Desktop Book & Mobile Clean Buttons ── */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-
-            {/* Desktop Direct Phone Pill */}
-            <a
-              href={`tel:${cleanPhone}`}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '7px 16px',
-                borderRadius: '9999px',
-                background: '#F8FAFC',
-                border: '1px solid #E5E7EB',
-                color: '#111827',
-                fontSize: 13.5,
-                fontWeight: 800,
-                textDecoration: 'none',
-              }}
-              className="desktop-nav"
-            >
-              <FiPhone size={14} style={{ color: '#FF4500' }} />
-              <span>{phoneRaw}</span>
-            </a>
 
             {/* Desktop Book Now Button */}
             <Link
@@ -362,28 +348,70 @@ export default function Navbar() {
                 flexDirection: 'column',
                 gap: 7,
               }}>
-                <a
-                  href={`tel:${cleanPhone}`}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 7,
-                    width: '100%',
-                    padding: '10px',
-                    borderRadius: 10,
-                    background: '#111827',
-                    color: '#FFFFFF',
-                    fontSize: 13,
-                    fontWeight: 900,
-                    textDecoration: 'none',
-                  }}
-                >
-                  <FiPhoneCall size={14} /> Call {phoneRaw}
-                </a>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+                  <a
+                    href={`tel:${cleanPhone}`}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 7,
+                      width: '100%',
+                      padding: '10px',
+                      borderRadius: 10,
+                      background: '#111827',
+                      color: '#FFFFFF',
+                      fontSize: 13,
+                      fontWeight: 900,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <FiPhoneCall size={14} /> Call {cleanPhone}
+                  </a>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 5 }}>
+                    <a
+                      href="tel:9049655717"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 4,
+                        padding: '6px 8px',
+                        borderRadius: 8,
+                        background: '#F1F5F9',
+                        border: '1px solid #E2E8F0',
+                        color: '#334155',
+                        fontSize: 11.5,
+                        fontWeight: 800,
+                        textDecoration: 'none',
+                      }}
+                    >
+                      <FiPhone size={12} color="#FF4500" /> 9049655717
+                    </a>
+                    <a
+                      href="tel:9923336366"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 4,
+                        padding: '6px 8px',
+                        borderRadius: 8,
+                        background: '#F1F5F9',
+                        border: '1px solid #E2E8F0',
+                        color: '#334155',
+                        fontSize: 11.5,
+                        fontWeight: 800,
+                        textDecoration: 'none',
+                      }}
+                    >
+                      <FiPhone size={12} color="#FF4500" /> 9923336366
+                    </a>
+                  </div>
+                </div>
 
                 <a
-                  href={`https://wa.me/${(settings?.whatsapp || '918485877633').replace(/\D/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedarnath Tours & Travels")},%20I%20want%20to%20book%20a%20car.`}
+                  href={`https://wa.me/${cleanWhatsapp}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedarnath Tours & Travels")},%20I%20want%20to%20book%20a%20car.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{

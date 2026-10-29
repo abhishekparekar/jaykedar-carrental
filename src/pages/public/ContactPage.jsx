@@ -25,10 +25,17 @@ export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const phone = settings?.phone || '+91 8485877633';
-  const email = settings?.email || 'abhiparekar58@gmail.com';
-  const address = settings?.address || 'Pimpri-Chinchwad & Pune City, Maharashtra';
-  const whatsapp = settings?.whatsapp || '918485877633';
+  const phoneList = (settings?.phones && settings.phones.length > 0)
+    ? settings.phones
+    : ['8446469216', '9049655717', '9923336366'];
+  const primaryPhone = phoneList[0] || '8446469216';
+  const email = settings?.email || 'shashikantmaske1958@gmail.com';
+  const address = settings?.address || 'Flat No. B1-17, Siddhivinayak complex Shinde Pool, NDA Road, Shivne, Pune 411023.';
+  const rawWhatsapp = settings?.whatsapp || '918446469216';
+  const whatsapp = rawWhatsapp.replace(/\D/g, '').startsWith('91')
+    ? rawWhatsapp.replace(/\D/g, '')
+    : `91${rawWhatsapp.replace(/\D/g, '')}`;
+  const gstin = settings?.gstin || '27BYAPM5338L1Z3';
   const hours = settings?.businessHours || '24 Hours • 365 Days Doorstep Delivery';
 
   const [form, setForm] = useState({
@@ -78,21 +85,39 @@ export default function ContactPage() {
         {/* ─── Hero Header Block ─── */}
         <div style={{ background: '#FFFFFF', borderBottom: '1px solid #E2E8F0', marginBottom: 32 }}>
           <div className="container" style={{ padding: '32px 20px 28px' }}>
-            <span style={{
-              background: 'rgba(255, 69, 0, 0.08)',
-              color: '#FF4500',
-              border: '1px solid rgba(255, 69, 0, 0.25)',
-              padding: '5px 14px',
-              borderRadius: '9999px',
-              fontSize: 12,
-              fontWeight: 800,
-              letterSpacing: '0.8px',
-              textTransform: 'uppercase',
-              display: 'inline-block',
-              marginBottom: 10,
-            }}>
-              Contact &amp; Instant Rental Quote
-            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 10 }}>
+              <span style={{
+                background: 'rgba(255, 69, 0, 0.08)',
+                color: '#FF4500',
+                border: '1px solid rgba(255, 69, 0, 0.25)',
+                padding: '5px 14px',
+                borderRadius: '9999px',
+                fontSize: 12,
+                fontWeight: 800,
+                letterSpacing: '0.8px',
+                textTransform: 'uppercase',
+                display: 'inline-block',
+              }}>
+                Contact &amp; Instant Rental Quote
+              </span>
+              <span style={{
+                background: '#FFFFFF',
+                color: '#111827',
+                border: '1.5px solid rgba(255, 69, 0, 0.35)',
+                padding: '5px 14px',
+                borderRadius: '9999px',
+                fontSize: 12,
+                fontWeight: 900,
+                letterSpacing: '0.5px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                boxShadow: '0 2px 8px rgba(255, 69, 0, 0.08)',
+              }}>
+                <FiShield size={13} color="#FF4500" />
+                <span>GSTIN NO. : <strong style={{ color: '#E62E00', fontFamily: 'monospace' }}>{gstin}</strong></span>
+              </span>
+            </div>
             <h1 style={{ fontSize: 'clamp(22px, 4.5vw, 36px)', fontWeight: 900, color: '#111827', margin: '0 0 8px', lineHeight: 1.25 }}>
               Get in Touch with <span style={{ color: '#FF4500' }}>Tours &amp; Travel Support</span>
             </h1>
@@ -367,27 +392,61 @@ export default function ContactPage() {
                 position: 'relative',
                 zIndex: 2,
                 background: '#FFFFFF',
-                padding: '14px 16px',
+                padding: '16px 18px',
                 borderRadius: 16,
-                border: '1px solid #E2E8F0',
-                boxShadow: '0 4px 14px rgba(15, 23, 42, 0.05)',
+                border: '1.5px solid #FFD8CC',
+                boxShadow: '0 6px 20px rgba(255, 69, 0, 0.08)',
               }}>
-                <span style={{ fontSize: 11, color: '#6B7280', textTransform: 'uppercase', fontWeight: 800, display: 'block', letterSpacing: '0.5px' }}>
-                  Direct Helpline Hotline:
-                </span>
-                <a
-                  href={`tel:${phone.replace(/\s+/g, '')}`}
-                  style={{ fontSize: 20, fontWeight: 900, color: '#111827', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}
-                >
-                  <FiPhoneCall color="#FF4500" size={20} />
-                  <span>{phone}</span>
-                </a>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <span style={{ fontSize: 11, color: '#FF4500', textTransform: 'uppercase', fontWeight: 900, display: 'block', letterSpacing: '0.6px' }}>
+                    Direct Booking Hotlines:
+                  </span>
+                  <span style={{ fontSize: 10.5, background: 'rgba(255,69,0,0.1)', color: '#FF4500', fontWeight: 800, padding: '2px 8px', borderRadius: 99 }}>
+                    24x7 Available
+                  </span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  {phoneList.map((ph, idx) => (
+                    <a
+                      key={ph}
+                      href={`tel:${ph}`}
+                      style={{
+                        fontSize: 16,
+                        fontWeight: 900,
+                        color: '#111827',
+                        textDecoration: 'none',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '6px 10px',
+                        borderRadius: 10,
+                        background: '#F8FAFC',
+                        border: '1px solid #E2E8F0',
+                        transition: 'all 0.18s ease',
+                      }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.borderColor = '#FF4500';
+                        e.currentTarget.style.color = '#FF4500';
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.borderColor = '#E2E8F0';
+                        e.currentTarget.style.color = '#111827';
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <FiPhoneCall color="#FF4500" size={16} />
+                        <span>+91 {ph}</span>
+                      </div>
+                      <span style={{ fontSize: 11, color: '#64748B', fontWeight: 700 }}>Line {idx + 1}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
 
               {/* 1-Click CTAs */}
               <div style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 <a
-                  href={`tel:${phone.replace(/\s+/g, '')}`}
+                  href={`tel:${primaryPhone}`}
                   className="btn btn-secondary"
                   style={{
                     background: '#111827',
@@ -405,11 +464,11 @@ export default function ContactPage() {
                     boxShadow: '0 4px 14px rgba(17, 24, 39, 0.20)',
                   }}
                 >
-                  <FiPhoneCall size={15} /> Call Now
+                  <FiPhoneCall size={15} /> Call Primary Line
                 </a>
 
                 <a
-                  href={`https://wa.me/${whatsapp.replace(/\D/g, '')}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedarnath Tours & Travels")},%20I%20need%20URGENT%20car%20delivery%20in%2030%20minutes.`}
+                  href={`https://wa.me/${whatsapp}?text=Hi%20${encodeURIComponent(settings?.businessName || "Jay Kedarnath Tours & Travels")},%20I%20need%20URGENT%20car%20delivery%20in%2030%20minutes.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary"
@@ -429,7 +488,7 @@ export default function ContactPage() {
                     boxShadow: '0 4px 16px rgba(37, 211, 102, 0.35)',
                   }}
                 >
-                  <BsWhatsapp size={16} /> Dispatch
+                  <BsWhatsapp size={16} /> WhatsApp Direct
                 </a>
               </div>
 
@@ -463,81 +522,216 @@ export default function ContactPage() {
           </div>
 
           {/* ─── Contact Info Quick Cards Bar ─── */}
-          <div className="grid-4" style={{ gap: 16, marginBottom: 20 }}>
-            {[
-              {
-                icon: <FiPhoneCall size={18} />,
-                label: 'Call / WhatsApp (24/7)',
-                value: phone,
-                href: `https://wa.me/${whatsapp.replace(/\D/g, '')}`,
-              },
-              {
-                icon: <FiMail size={18} />,
-                label: 'Email Support',
-                value: email,
-                href: `mailto:${email}`,
-              },
-              {
-                icon: <FiMapPin size={18} />,
-                label: 'Main Office Location',
-                value: address,
-                href: null,
-              },
-              {
-                icon: <FiClock size={18} />,
-                label: 'Business Working Hours',
-                value: hours,
-                href: null,
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  background: '#FFFFFF',
-                  borderRadius: 18,
-                  padding: '16px 18px',
-                  border: '1px solid #E2E8F0',
-                  boxShadow: '0 4px 16px rgba(15, 23, 42, 0.04)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 12,
-                }}
-              >
-                <div style={{
-                  width: 42,
-                  height: 42,
-                  borderRadius: 12,
-                  background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
-                  color: '#FFFFFF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                  boxShadow: '0 4px 12px rgba(230, 46, 0, 0.30)',
-                }}>
-                  {item.icon}
-                </div>
-                <div style={{ minWidth: 0 }}>
-                  <span style={{ fontSize: 11, fontWeight: 800, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block' }}>
-                    {item.label}
-                  </span>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      target={item.href.startsWith('http') ? '_blank' : undefined}
-                      rel="noopener noreferrer"
-                      style={{ fontSize: 13.5, fontWeight: 900, color: '#111827', textDecoration: 'none', display: 'block', marginTop: 2, wordBreak: 'break-all' }}
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <span style={{ fontSize: 13, fontWeight: 800, color: '#111827', display: 'block', marginTop: 2, lineHeight: 1.3 }}>
-                      {item.value}
+          <div className="contact-info-cards-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 16,
+            marginBottom: 24,
+          }}>
+            {/* Phone Card */}
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: 18,
+              padding: '18px 20px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 4px 16px rgba(15, 23, 42, 0.04)',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 14,
+            }}>
+              <div style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
+                color: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                boxShadow: '0 4px 12px rgba(230, 46, 0, 0.30)',
+                marginTop: 2,
+              }}>
+                <FiPhoneCall size={20} />
+              </div>
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <span style={{ fontSize: 11, fontWeight: 800, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 4 }}>
+                  Mobile / Call Lines (24/7)
+                </span>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 6px' }}>
+                  {phoneList.map((ph, idx) => (
+                    <span key={ph} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                      <a
+                        href={`tel:${ph}`}
+                        style={{ fontSize: 13.5, fontWeight: 900, color: '#111827', textDecoration: 'none' }}
+                        onMouseEnter={e => e.currentTarget.style.color = '#FF4500'}
+                        onMouseLeave={e => e.currentTarget.style.color = '#111827'}
+                      >
+                        +91 {ph}
+                      </a>
+                      {idx < phoneList.length - 1 && <span style={{ color: '#FF4500', fontWeight: 800 }}>/</span>}
                     </span>
-                  )}
+                  ))}
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Email Card */}
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: 18,
+              padding: '18px 20px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 4px 16px rgba(15, 23, 42, 0.04)',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 14,
+            }}>
+              <div style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
+                color: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                boxShadow: '0 4px 12px rgba(230, 46, 0, 0.30)',
+                marginTop: 2,
+              }}>
+                <FiMail size={20} />
+              </div>
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <span style={{ fontSize: 11, fontWeight: 800, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 4 }}>
+                  Email Support
+                </span>
+                <a
+                  href={`mailto:${email}`}
+                  style={{ fontSize: 13.5, fontWeight: 900, color: '#111827', textDecoration: 'none', display: 'block', wordBreak: 'break-all' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#FF4500'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#111827'}
+                >
+                  {email}
+                </a>
+              </div>
+            </div>
+
+            {/* GSTIN Card */}
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: 18,
+              padding: '18px 20px',
+              border: '2px solid rgba(255, 69, 0, 0.35)',
+              boxShadow: '0 6px 20px rgba(230, 46, 0, 0.08)',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 14,
+            }}>
+              <div style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
+                color: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                boxShadow: '0 4px 12px rgba(230, 46, 0, 0.30)',
+                marginTop: 2,
+              }}>
+                <FiShield size={20} />
+              </div>
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                  <span style={{ fontSize: 11, fontWeight: 900, color: '#FF4500', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                    Govt. Tax Registration
+                  </span>
+                  <span style={{ fontSize: 10, background: '#DCFCE7', color: '#15803D', fontWeight: 800, padding: '2px 6px', borderRadius: 6 }}>
+                    Verified
+                  </span>
+                </div>
+                <div style={{ fontSize: 14.5, fontWeight: 900, color: '#111827', display: 'flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+                  <span>GSTIN NO. :</span>
+                  <span style={{ letterSpacing: '0.8px', fontFamily: 'monospace', color: '#E62E00', fontWeight: 900 }}>
+                    {gstin}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Office Address Card */}
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: 18,
+              padding: '18px 20px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 4px 16px rgba(15, 23, 42, 0.04)',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 14,
+            }}>
+              <div style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
+                color: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                boxShadow: '0 4px 12px rgba(230, 46, 0, 0.30)',
+                marginTop: 2,
+              }}>
+                <FiMapPin size={20} />
+              </div>
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <span style={{ fontSize: 11, fontWeight: 800, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 4 }}>
+                  Office Address
+                </span>
+                <span style={{ fontSize: 13, fontWeight: 800, color: '#111827', display: 'block', lineHeight: 1.4 }}>
+                  {address}
+                </span>
+              </div>
+            </div>
+
+            {/* Business Hours Card */}
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: 18,
+              padding: '18px 20px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 4px 16px rgba(15, 23, 42, 0.04)',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 14,
+            }}>
+              <div style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background: 'linear-gradient(135deg, #FF4B1F 0%, #E62E00 100%)',
+                color: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                boxShadow: '0 4px 12px rgba(230, 46, 0, 0.30)',
+                marginTop: 2,
+              }}>
+                <FiClock size={20} />
+              </div>
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <span style={{ fontSize: 11, fontWeight: 800, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 4 }}>
+                  Business Working Hours
+                </span>
+                <span style={{ fontSize: 13, fontWeight: 800, color: '#111827', display: 'block', lineHeight: 1.4 }}>
+                  {hours}
+                </span>
+              </div>
+            </div>
           </div>
 
         </div>

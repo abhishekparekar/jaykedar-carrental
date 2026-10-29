@@ -26,6 +26,7 @@ export default function AdminSettings() {
     email: '',
     address: '',
     whatsapp: '',
+    gstin: '',
     facebook: '',
     instagram: '',
     twitter: '',
@@ -57,10 +58,11 @@ export default function AdminSettings() {
       setForm({
         businessName: settings.businessName || "Jay Kedarnath Tours & Travels",
         tagline: settings.tagline || 'Premium cab and vehicle rentals for outstation trips, local journeys, and tour packages with 24/7 doorstep pickup.',
-        phone: settings.phone || '+91 8485877633',
-        email: settings.email || 'abhiparekar58@gmail.com',
-        address: settings.address || 'Pimpri-Chinchwad & Pune City, Maharashtra',
-        whatsapp: settings.whatsapp || '918485877633',
+        phone: settings.phone || '+91 8446469216 / 9049655717 / 9923336366',
+        email: settings.email || 'shashikantmaske1958@gmail.com',
+        address: settings.address || 'Flat No. B1-17, Siddhivinayak complex Shinde Pool, NDA Road, Shivne, Pune 411023.',
+        whatsapp: settings.whatsapp || '918446469216',
+        gstin: settings.gstin || '27BYAPM5338L1Z3',
         businessHours: settings.businessHours || '24 Hours • 365 Days Doorstep Delivery',
         facebook: settings.facebook || 'https://facebook.com',
         instagram: settings.instagram || 'https://instagram.com',
@@ -213,7 +215,7 @@ export default function AdminSettings() {
                     className="form-input"
                     value={form.phone}
                     onChange={e => setForm({ ...form, phone: e.target.value })}
-                    placeholder="+91 8485877633"
+                    placeholder="+91 8446469216 / 9049655717 / 9923336366"
                   />
                 </div>
 
@@ -225,7 +227,19 @@ export default function AdminSettings() {
                     className="form-input"
                     value={form.whatsapp}
                     onChange={e => setForm({ ...form, whatsapp: e.target.value })}
-                    placeholder="918485877633"
+                    placeholder="918446469216"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">GSTIN Registration NO. *</label>
+                  <input
+                    type="text"
+                    required
+                    className="form-input"
+                    value={form.gstin}
+                    onChange={e => setForm({ ...form, gstin: e.target.value })}
+                    placeholder="27BYAPM5338L1Z3"
                   />
                 </div>
 
@@ -237,7 +251,7 @@ export default function AdminSettings() {
                     className="form-input"
                     value={form.email}
                     onChange={e => setForm({ ...form, email: e.target.value })}
-                    placeholder="abhiparekar58@gmail.com"
+                    placeholder="shashikantmaske1958@gmail.com"
                   />
                 </div>
 
@@ -249,7 +263,7 @@ export default function AdminSettings() {
                     className="form-input"
                     value={form.address}
                     onChange={e => setForm({ ...form, address: e.target.value })}
-                    placeholder="Pimpri-Chinchwad & Pune City, Maharashtra"
+                    placeholder="Flat No. B1-17, Siddhivinayak complex Shinde Pool, NDA Road, Shivne, Pune 411023."
                   />
                 </div>
 

@@ -29,6 +29,7 @@ export function AuthProvider({ children }) {
 
     if (firebaseUser.email && (
       firebaseUser.email.toLowerCase() === 'admin@gmail.com' ||
+      firebaseUser.email.toLowerCase() === 'shashikantmaske1958@gmail.com' ||
       firebaseUser.email.toLowerCase() === 'abhiparekar58@gmail.com'
     )) {
       setAdminRole('admin');
@@ -60,7 +61,7 @@ export function AuthProvider({ children }) {
     const cleanEmail = email.trim().toLowerCase();
     const cleanPassword = password.trim();
     const targetEmail = 'admin@gmail.com';
-    const validEmails = ['admin@gmail.com', 'abhiparekar58@gmail.com'];
+    const validEmails = ['admin@gmail.com', 'shashikantmaske1958@gmail.com', 'abhiparekar58@gmail.com'];
     const validPasswords = ['admin@1234', 'Admin@1234'];
 
     if (!validEmails.includes(cleanEmail) || !validPasswords.includes(cleanPassword)) {
